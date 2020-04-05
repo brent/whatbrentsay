@@ -1,0 +1,23 @@
+.appWrapper {
+  font-size: 1.375rem;
+  margin: 0 auto;
+  max-width: 50rem;
+}
+
+@media (max-width: 800px) {
+  .appWrapper {
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .appWrapper {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .appWrapper {
+    font-size: 2.125rem;
+  }
+}
