@@ -1,7 +1,9 @@
 .appHeader {
-  align-self: end;
+  position: absolute
+  width: 100%;
   height: 4rem;
   margin: 0;
+  top: 2rem;
 }
 
 .logo {
