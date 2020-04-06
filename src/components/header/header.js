@@ -5,8 +5,8 @@ import React from "react"
 import styles from './header.module.css';
 
 const Header = ({ siteTitle }) => (
-  <header className={ styles.header }>
-    <h1><Link to="/">{siteTitle}</Link></h1>
+  <header className={ styles.appHeader }>
+    <h1 className={ styles.logo }><Link to="/">{siteTitle}</Link></h1>
   </header>
 )
 

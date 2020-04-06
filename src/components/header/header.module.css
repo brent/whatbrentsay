@@ -1,0 +1,18 @@
+.appHeader {
+  align-self: end;
+  height: 4rem;
+  margin: 0;
+}
+
+.logo {
+  background: url('../../images/wbs-logo.svg') no-repeat;
+  background-size: 3rem 3rem;
+  text-indent: -9999px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.logo a {
+  display: block;
+}

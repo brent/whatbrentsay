@@ -1,8 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "../components/layout/layout.js"
+import SEO from "../components/seo/seo.js"
+import PostsList from '../components/PostsList/PostsList.js'
 
 import styles from './index.module.css'
 
@@ -19,6 +20,11 @@ const Tag = (tag) => (
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark
   return (
+    <Layout>
+      <SEO title="whatbrentsay" />
+      <PostsList posts={ posts } />
+    </Layout>
+    /*
     <Layout>
       <SEO title="whatbrentsay" />
       <div className="blog-posts">
@@ -38,6 +44,7 @@ export default function Index({ data }) {
           })}
       </div>
     </Layout>
+    */
   )
 }
 

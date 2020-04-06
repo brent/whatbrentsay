@@ -1,5 +1,9 @@
 .appWrapper {
+  display: grid;
   font-size: 1.375rem;
+  grid-template-rows: 6rem auto 2rem;
+  grid-gap: 2rem;
+  height: 100%;
   margin: 0 auto;
   max-width: 50rem;
 }
