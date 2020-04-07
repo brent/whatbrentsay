@@ -8,10 +8,19 @@
 .postsListItem {
   display: flex;
   height: 100%;
+  margin-bottom: 2rem;
+}
+
+.postsListItem:first-child {
+  margin-top: 8rem;
+}
+
+.postsListItem:last-child {
+  margin-bottom: 2rem;
 }
 
 .postsListItem__titleWrapper { 
-  margin-left: 2em;
+  margin-left: 2rem;
 }
 
 .featuredPostsListItem .postsListItem__title {
@@ -27,7 +36,7 @@
 
 .postsListItem__date {
   color: #937E97;
-  width: 2.25em;
+  width: 2rem;
 }
 
 .featuredPostsListItem .postsListItem__date {
@@ -39,8 +48,20 @@
 }
 
 @media (min-width: 768px) {
+  .postsListItem__date {
+    width: 4rem;
+  }
+
   .featuredPostsListItem .postsListItem__title,
   .featuredPostsListItem .postsListItem__date {
     font-size: 1.25em;
+  }
+
+  .postsListItem:first-child {
+    margin-top: 10rem;
+  }
+
+  .postsListItem__titleWrapper { 
+    margin-left: 4rem;
   }
 }

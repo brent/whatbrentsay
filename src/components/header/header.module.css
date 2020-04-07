@@ -1,7 +1,7 @@
 .appHeader {
-  position: absolute
-  width: 100%;
-  height: 4rem;
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
   margin: 0;
   top: 2rem;
 }
@@ -17,4 +17,5 @@
 
 .logo a {
   display: block;
+  height: 100%;
 }
