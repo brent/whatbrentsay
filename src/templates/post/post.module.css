@@ -1,0 +1,30 @@
+.postWrapper {
+  margin-top: 8rem;
+}
+
+.postWrapperInner {
+  /* color: #CDCACD; */
+  color: #fff;
+  font-family: 'Halant', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.postTitle,
+.postDate {
+  font-weight: normal;
+}
+
+.postDate { }
+
+@media (min-width: 768px) {
+  .postWrapper {
+    margin-top: 10rem;
+  }
+
+  .postWrapperInner {
+    margin-left: 8rem;
+    font-size: 1.75rem;
+    line-height: 2.5rem;
+  }
+}

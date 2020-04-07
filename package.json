@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "whatbrentsay",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "another blog about stuff",
+  "version": "0.0.1",
+  "author": "brent <brent.e.meyer@gmail.com>",
   "dependencies": {
     "gatsby": "^2.20.12",
     "gatsby-image": "^2.3.1",
