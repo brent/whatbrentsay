@@ -1,5 +1,5 @@
 .postWrapper {
-  margin-top: 8rem;
+  margin: 8rem 0;
 }
 
 .postWrapperInner {
@@ -8,6 +8,10 @@
   font-family: 'Halant', sans-serif;
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.postWrapperInner p {
+  margin-bottom: 1rem;
 }
 
 .postTitle,
@@ -26,5 +30,9 @@
     margin-left: 8rem;
     font-size: 1.75rem;
     line-height: 2.5rem;
+  }
+
+  .postWrapperInner p {
+    margin-bottom: 2rem;
   }
 }

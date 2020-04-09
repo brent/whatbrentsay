@@ -2,6 +2,7 @@
   position: fixed;
   bottom: 1rem;
   font-size: 0.875rem;
+  opacity: 0.5;
 }
 
 @media (min-width: 768px) {

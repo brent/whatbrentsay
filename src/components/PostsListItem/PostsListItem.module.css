@@ -11,14 +11,6 @@
   margin-bottom: 2rem;
 }
 
-.postsListItem:first-child {
-  margin-top: 8rem;
-}
-
-.postsListItem:last-child {
-  margin-bottom: 2rem;
-}
-
 .postsListItem__titleWrapper { 
   margin-left: 2rem;
 }
