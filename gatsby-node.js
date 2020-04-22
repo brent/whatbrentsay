@@ -19,8 +19,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       ) {
         edges {
           node {
+            fileAbsolutePath
             frontmatter {
-              path
+              slug
+              date(formatString: "YYYY/MM/DD")
             }
           }
         }
@@ -35,10 +37,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    // const postRelPath = node.fileAbsolutePath.split('posts/')[1];
+    // const [ year, month, day, slug, file ] = postRelPath.split('/');
+
     createPage({
-      path: node.frontmatter.path,
+      // path: `/${year}/${month}/${day}/${slug}`,
+      path: `${node.frontmatter.date}/${node.frontmatter.slug}`,
       component: postTemplate,
-      context: {}, // additional data can be passed via context
+      context: { slug: node.frontmatter.slug }, // additional data can be passed via context
     })
   })
 }

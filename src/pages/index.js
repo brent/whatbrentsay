@@ -24,27 +24,6 @@ export default function Index({ data }) {
       <SEO title="whatbrentsay" />
       <PostsList posts={ posts } />
     </Layout>
-    /*
-    <Layout>
-      <SEO title="whatbrentsay" />
-      <div className="blog-posts">
-        {posts
-          .filter(post => post.node.frontmatter.title.length > 0)
-          .map(({ node: post }) => {
-            return (
-              <div className={ styles.postListItem } key={post.id}>
-                <h1 className={ styles.postListItem__titleWrapper }>
-                  <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
-                </h1>
-                <h2 className={ styles.postListItem__date }>{post.frontmatter.date}</h2>
-                <p>{post.excerpt}</p>
-                <ul>{ post.frontmatter.tags }</ul>
-              </div>
-            )
-          })}
-      </div>
-    </Layout>
-    */
   )
 }
 
@@ -57,8 +36,8 @@ export const pageQuery = graphql`
           id
           frontmatter {
             title
-            date(formatString: "M/D")
-            path
+            date(formatString: "YYYY/MM/DD")
+            slug
             tags
           }
         }
