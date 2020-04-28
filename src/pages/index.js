@@ -5,18 +5,6 @@ import Layout from "../components/layout/layout.js"
 import SEO from "../components/seo/seo.js"
 import PostsList from '../components/PostsList/PostsList.js'
 
-import styles from './index.module.css'
-
-const renderTags = (tagsList) => {
-  return tagsList.map(tag => <Tag {...tag} />);
-}
-
-const Tag = (tag) => (
-  <li key={ tag.id } className={ styles.tag }>
-    <a href='#'>{ tag.name }</a>
-  </li>
-);
-
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark
   return (
