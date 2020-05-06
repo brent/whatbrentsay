@@ -1,15 +1,40 @@
+
 .postWrapper {
   margin: 8rem 0;
 }
 
 .postWrapperInner {
   color: #CDCACD;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.postWrapperInner hr {
+  border: 1px solid;
+  margin: 4rem auto;
+  width: 2rem;
+}
+
+.postWrapperInner ul,
+.postWrapperInner ul + p {
+  font-size: 0.875em;
+}
+
+.postWrapperInner ul + p {
+  margin-bottom: 0;
 }
 
 .postWrapperInner p {
   margin-bottom: 1rem;
+}
+
+.postWrapperInner li {
+  margin: 0 0 0 2rem;
+  list-style-type: disc;
+}
+
+.postWrapperInner li p {
+  margin-bottom: 0;
 }
 
 .postWrapperInner table {
