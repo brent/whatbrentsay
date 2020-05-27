@@ -5,8 +5,19 @@ import Layout from "../components/layout/layout.js"
 import SEO from "../components/seo/seo.js"
 import PostsList from '../components/PostsList/PostsList.js'
 
+import {
+  getTemplateTag,
+  stripTemplateTagFromTags,
+} from '../utils/templateParser';
+
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark
+
+  posts.forEach((post) => {
+    const tags = post.node.frontmatter.tags;
+    post.node.frontmatter.tags = stripTemplateTagFromTags(getTemplateTag(tags), tags);
+  });
+
   return (
     <Layout>
       <SEO title="whatbrentsay" />

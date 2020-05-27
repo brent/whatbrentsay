@@ -5,11 +5,10 @@
  */
 
 const path = require(`path`)
+const postTemplate = path.resolve(`./src/templates/post/post.js`)
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
-
-  const postTemplate = path.resolve(`src/templates/post/post.js`)
 
   const result = await graphql(`
     {
@@ -37,11 +36,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    // const postRelPath = node.fileAbsolutePath.split('posts/')[1];
-    // const [ year, month, day, slug, file ] = postRelPath.split('/');
-
     createPage({
-      // path: `/${year}/${month}/${day}/${slug}`,
       path: `${node.frontmatter.date}/${node.frontmatter.slug}`,
       component: postTemplate,
       context: { slug: node.frontmatter.slug }, // additional data can be passed via context
