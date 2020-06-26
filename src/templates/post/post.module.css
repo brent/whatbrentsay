@@ -1,3 +1,12 @@
+h1 {
+  font-size: 1.125em;
+  margin-bottom: 2rem;
+}
+
+p + h2 {
+  margin-top: 4rem;
+}
+
 .postWrapper {
   margin: 8rem 0;
 }
@@ -68,13 +77,26 @@
 
 .postDate { }
 
+.postWrapperInner blockquote {
+  font-size: 0.75em;
+  border-left: 0.25rem solid;
+  padding-left: 1rem;
+  line-height: 1.25;
+  margin: 3rem auto 2rem;
+}
+
+.postWrapperInner blockquote span {
+  font-size: 0.875em;
+}
+
 .postWrapperInnerTimeline blockquote {
   font-size: 0.66em;
   line-height: 1.25;
   background: rgba(0,0,0,0.15);
+  border: none;
   padding: 1rem;
   color: #6F5B74;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
   border-radius: 0.5rem;
 }
 
