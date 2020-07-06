@@ -28,7 +28,7 @@
 
 .postsListItem__date {
   color: #937E97;
-  width: 2rem;
+  min-width: 3rem;
 }
 
 .featuredPostsListItem .postsListItem__date {
@@ -41,7 +41,7 @@
 
 @media (min-width: 768px) {
   .postsListItem__date {
-    width: 4rem;
+    min-width: 4rem;
   }
 
   .featuredPostsListItem .postsListItem__title,
