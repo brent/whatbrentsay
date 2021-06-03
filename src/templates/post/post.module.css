@@ -11,6 +11,16 @@ p + h2 {
   margin-top: 4rem;
 }
 
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 1rem;
+}
+
+.gatsby-resp-image-wrapper {
+  margin: 2rem 0;
+}
+
 .postWrapper {
   margin: 8rem 0;
 }
@@ -43,6 +53,10 @@ p + h2 {
 .postWrapperInner li {
   margin: 0 0 0 2rem;
   list-style-type: disc;
+}
+
+.postWrapperInner > ul > li:last-child {
+  margin-bottom: 2rem;
 }
 
 .postWrapperInner li p {
@@ -86,7 +100,11 @@ p + h2 {
   border-left: 0.25rem solid;
   padding-left: 1rem;
   line-height: 1.25;
-  margin: 3rem auto 2rem;
+  margin: 1rem auto 2rem;
+}
+
+.postWrapperInner blockquote > p {
+  line-height: 1.65;
 }
 
 .postWrapperInner blockquote span {
