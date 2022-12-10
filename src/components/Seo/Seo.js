@@ -42,4 +42,4 @@ function Seo({ description, title, children }) {
   )
 }
 
-export default Seo
+export default Seo;

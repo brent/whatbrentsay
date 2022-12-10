@@ -61,7 +61,7 @@ async function createWpBlogPostPages({ wpPosts, createPage }) {
 
       createPage({
         path: post.uri,
-        component: path.resolve(`./src/templates/wp-blog-post.js`),
+        component: path.resolve(`./src/templates/WpBlogPost/WpBlogPost.js`),
         context: {
           id: post.id,
           previousPostId: previous ? previous.id : null,
@@ -101,7 +101,7 @@ async function createWpPostArchive({ wpPosts, graphql, createPage }) {
 
       await createPage({
         path: getPagePath(pageNumber),
-        component: path.resolve(`./src/templates/blog-post-archive.js`),
+        component: path.resolve(`./src/templates/BlogPostArchive/BlogPostArchive.js`),
         context: {
           offset: index * postsPerPage,
           postsPerPage,

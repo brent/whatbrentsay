@@ -10,12 +10,12 @@ import { GatsbyImage } from "gatsby-plugin-image"
 // import "../css/@wordpress/block-library/build-style/style.css"
 // import "../css/@wordpress/block-library/build-style/theme.css"
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../../components/Layout";
+import Seo from "../../components/Seo";
 
 import parse from 'html-react-parser';
 
-const WpBlogPostTemplate = ({ data: { previous, next, post } }) => {
+const WpBlogPost = ({ data: { previous, next, post } }) => {
   [previous, next].forEach((post) => {
     if (post) {
       post.uri = post.uri.replace(/index\.php\//, '');
@@ -87,7 +87,7 @@ const WpBlogPostTemplate = ({ data: { previous, next, post } }) => {
   )
 }
 
-export default WpBlogPostTemplate
+export default WpBlogPost
 
 export const pageQuery = graphql`
   query BlogPostById(

@@ -2,8 +2,8 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../../components/Layout"
+import Seo from "../../components/Seo"
 
 import parse from 'html-react-parser';
 
@@ -191,7 +191,7 @@ const groupPostsByDate = (posts) => {
   return groupedPosts;
 }
 
-const BlogIndex = ({
+const BlogPostArchive = ({
   data,
   pageContext: { nextPagePath, previousPagePath },
 }) => {
@@ -227,7 +227,7 @@ const BlogIndex = ({
   )
 }
 
-export default BlogIndex
+export default BlogPostArchive
 
 export const pageQuery = graphql`
   query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
