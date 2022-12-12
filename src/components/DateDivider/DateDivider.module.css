@@ -1,3 +1,16 @@
 .dateDivider {
   font-weight: bold;
 }
+
+.dateDivider__weekday {
+  color: #656565;
+}
+
+.dateDivider__month {
+}
+
+.dateDivider__day {
+}
+
+.dateDivider__year {
+}
