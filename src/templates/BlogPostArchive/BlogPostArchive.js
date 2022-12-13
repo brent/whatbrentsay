@@ -19,7 +19,7 @@ const BlogPostArchive = ({
     const postsInSections = groupPostsByDate(posts);
 
     return postsInSections.map((section, index) => (
-      <div key={section.date.valueOf()} className='postSection'>
+      <div key={section.date.valueOf()} className={styles.postSection}>
         <DateDivider date={section.date.valueOf()} />
         <ol>
           {

@@ -1,9 +1,3 @@
-.postListItem {
-  list-style-type: none;
-}
-
-.postListItem__short {
-}
-
-.postListItem__long {
+.postSection ol {
+  list-style: none;
 }

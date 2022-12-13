@@ -5,9 +5,7 @@ import parse from 'html-react-parser';
 
 import * as styles from './PostListItem.module.css';
 
-const PostListItem = ({
-  post
-}) => {
+const PostListItem = ({ post }) => {
   post.uri = post.uri.replace(/index\.php\//, '');
 
   const thumb = post.featuredImage != null
@@ -94,7 +92,7 @@ const LongformPostItem = ({
   <li className={styles.postListItem}>
     <h2>
       <Link to={uri}>
-        <span>{title}</span>
+        <span className={styles.postListItem__bigTitle}>{title}</span>
       </Link>
     </h2>
     { thumb !== null
