@@ -5,6 +5,8 @@ import parse from 'html-react-parser';
 
 import * as styles from './PostListItem.module.css';
 
+import PostTimestamp from '../PostTimestamp';
+
 const PostListItem = ({ post }) => {
   post.uri = post.uri.replace(/index\.php\//, '');
 
@@ -24,9 +26,11 @@ const PostListItem = ({ post }) => {
       : null
   });
 
+  let PostItem;
+
   switch(postType.name) {
     case 'long':
-      return (
+      PostItem = (
         <LongformPostItem 
           uri={post.uri}
           title={post.title}
@@ -35,8 +39,9 @@ const PostListItem = ({ post }) => {
           thumb={thumb}
         />
       )
+      break;
     case 'short':
-      return (
+      PostItem = (
         <ShortPostItem
           uri={post.uri}
           title={post.title}
@@ -44,43 +49,74 @@ const PostListItem = ({ post }) => {
           excerpt={post.excerpt}
         />
       )
+      break;
     case 'feature':
-      return (
+      PostItem = (
         <FeaturePostItem
           uri={post.uri}
           title={post.title}
           date={post.date}
         />
       )
+      break;
     default:
-      return;
+      PostItem = null;
   }
-};
 
-export default PostListItem;
+  return (
+    <div className={styles.postListItem}>
+      {PostItem}
+      <PostTimestamp date={post.date} />
+    </div>
+  );
+};
 
 const ShortPostItem = ({
   uri,
   title,
   date,
   excerpt,
-}) => (
-  <li className={styles.postListItem}>
-    <h2>
+}) => {
+  const ShortPostWithTitle = ({ uri, title, excerpt }) => (
+    <>
+      <h2 className={styles.postListItem__title}>
+        <Link to={uri}>
+          <span>{title}</span>
+        </Link>
+      </h2>
+      <div>
+        {parse(excerpt)}
+      </div>
+    </>
+  );
+
+  const ShortPostWithoutTitle = ({ uri, excerpt }) => (
+    <>
       <Link to={uri}>
-        <span>{title}</span>
+        {parse(excerpt)}
       </Link>
-    </h2>
-    <div>
-      {parse(excerpt)}
+    </>
+  );
+
+  return (
+    <>
       { title === null || title === ''
-          ? <Link to={uri}> more &rarr;</Link>
-          : null
+        ? (
+          <ShortPostWithoutTitle
+            uri={uri}
+            excerpt={excerpt}
+          />
+        ) : (
+          <ShortPostWithTitle
+              uri={uri}
+              title={title}
+              excerpt={excerpt}
+          />
+        )
       }
-    </div>
-    <p>{date}</p>
-  </li>
-)
+    </>
+  )
+}
 
 const LongformPostItem = ({
   uri,
@@ -89,23 +125,22 @@ const LongformPostItem = ({
   excerpt,
   thumb,
 }) => (
-  <li className={styles.postListItem}>
-    <h2>
+  <>
+    <h2 className={styles.postListItem__bigTitle}>
       <Link to={uri}>
-        <span className={styles.postListItem__bigTitle}>{title}</span>
+        {title}
       </Link>
     </h2>
     { thumb !== null
         ? (
-          <div className='postItem__thumbWrapper'>
+          <div className={styles.postListItem__thumbWrapper}>
             <GatsbyImage image={thumb} alt='' />
           </div>
         )
         : null
     }
     {parse(excerpt)}
-    <p>{date}</p>
-  </li>
+  </>
 )
 
 const FeaturePostItem = ({
@@ -113,12 +148,13 @@ const FeaturePostItem = ({
   title,
   date,
 }) => {
-  <li className={styles.postListItem}>
-    <h2>
+  <>
+    <h2 className={styles.postListItem__title}>
       <Link to={uri}>
-        <span>{title}</span>
+        {title}
       </Link>
     </h2>
-    <p>{date}</p>
-  </li>
+  </>
 }
+
+export default PostListItem;

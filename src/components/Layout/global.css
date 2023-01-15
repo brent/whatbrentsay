@@ -23,26 +23,84 @@
   --space-4: 1.5rem;
   --space-5: 2rem;
   --space-6: 4rem;
-  --size-content: 54rem;
+  --space-7: 8rem;
+  --size-content: 37.5rem;
+  /*--size-content: 54rem;*/
   --size-gutter: var(--space-3);
   --size-gap: var(--space-6);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
-  box-sizing: inherit;
+  margin: 0;
 }
 
-*:before {
-  box-sizing: inherit;
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  padding: 0 0.5rem;
 }
 
-*:after {
-  box-sizing: inherit;
+a {
+  color: inherit;
+  cursor: pointer;
 }
 
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  overflow-wrap: break-word;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+ol,
+ul {
+  padding: 0;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+ul {
+  list-style-type: "⁃ ";
+}
+
+@media (min-width: 38.5rem) {
+  body {
+    padding: 0;
+  }
+}
+
+/*
 html {
   -webkit-text-size-adjust: 100%;
-  box-sizing: border-box;
   font: sans-serif;
   font-size: 16px;
   line-height: var(--line-height-normal);
@@ -92,9 +150,17 @@ dfn {
   font-style: italic;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 h1 {
   margin: 0;
-  margin-bottom: 3rem;
   padding: 0;
   line-height: var(--line-height-dense);
   letter-spacing: -0.01em;
@@ -138,8 +204,7 @@ fieldset,
 ul,
 ol,
 dl,
-dd,
-p {
+dd {
   margin: 0;
   padding: 0;
   margin-bottom: var(--space-4);
@@ -200,10 +265,6 @@ p *:last-child {
   margin-bottom: 0;
 }
 
-li > p {
-  margin-bottom: calc(var(--space-4) / 2);
-}
-
 p {
   max-width: 680px;
 }
@@ -259,3 +320,4 @@ pre tt:before,
 pre tt:after {
   content: none;
 }
+*/

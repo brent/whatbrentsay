@@ -2,6 +2,11 @@
   font-family: var(--font-sans);
   font-size: var(--font-md);
   line-height: 1.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.postListItem:last-child {
+  margin-bottom: 0;
 }
 
 .postListItem a {
@@ -14,4 +19,24 @@
   font-size: var(--font-xl);
   font-weight: 700;
   line-height: 2rem;
+  margin-bottom: var(--space-3);
+}
+
+.postListItem__thumbWrapper {
+  margin-bottom: var(--space-3);
+  width: 100vw;
+  transform: translate(calc(var(--space-2) * -1), 0);
+}
+
+.postListItem__title {
+  font-weight: bold;
+  margin-bottom: var(--space-1);
+}
+
+@media (min-width: 38.5625rem) {
+/*@media (min-width: 37.5rem) {*/
+  .postListItem__thumbWrapper {
+    width: 100%;
+    transform: none;
+  }
 }

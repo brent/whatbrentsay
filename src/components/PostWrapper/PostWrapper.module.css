@@ -1,0 +1,34 @@
+.postTitle {
+  font-size: var(--font-xl);
+  margin-bottom: 0;
+}
+
+.postHeader {
+  margin-bottom: var(--space-4);
+}
+
+.postWrapper h2,
+.postWrapper h3,
+.postWrapper h4,
+.postWrapper h5,
+.postWrapper h6,
+.postWrapper p,
+.postWrapper figure,
+.postWrapper ol,
+.postWrapper ul {
+  margin-bottom: var(--space-2);
+}
+
+.postWrapper ol {
+  margin-left: var(--space-3);
+}
+
+.postWrapper ul {
+  margin-left: var(--space-2);
+}
+
+/* corrects first list item spacing */
+.postWrapper p + ol,
+.postWrapper p + ul {
+  margin-top: calc(var(--space-2) * -1);
+}

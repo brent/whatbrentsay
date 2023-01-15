@@ -8,7 +8,8 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import "./layout.css"
+import "./global.css"
+import * as styles from "./Layout.module.css";
 
 import Header from "../Header"
 
@@ -26,23 +27,15 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: `var(--size-content)`,
-          padding: `var(--size-gutter)`,
-        }}
-      >
-        <main>{children}</main>
+      <div className={styles.mainWrapper}>
+        <main className="">{children}</main>
         <footer
           style={{
             marginTop: `var(--space-6)`,
             fontSize: `var(--font-sm)`,
           }}
         >
-          © {new Date().getFullYear()} &middot; Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+          © {new Date().getFullYear()} | words by <a href="https://whatbrentdo.com">brent</a>
         </footer>
       </div>
     </>

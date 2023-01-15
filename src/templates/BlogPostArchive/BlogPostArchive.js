@@ -18,20 +18,13 @@ const BlogPostArchive = ({
   const renderPosts = (posts) => {
     const postsInSections = groupPostsByDate(posts);
 
-    return postsInSections.map((section, index) => (
-      <div key={section.date.valueOf()} className={styles.postSection}>
+    return postsInSections.map((section, index, arr) => (
+      <li key={index} className={styles.postSection}>
         <DateDivider date={section.date.valueOf()} />
-        <ol>
-          {
-            section.posts.map(post => (
-              <PostListItem
-                key={post.id}
-                post={post}
-              />
-            ))
-          }
+        <ol className={styles.postSection__postList}>
+          {renderPostListItems(section.posts)}
         </ol>
-      </div>
+      </li>
     ))
   }
 
@@ -71,6 +64,27 @@ const BlogPostArchive = ({
     return groupedPosts;
   }
 
+  const renderPostListItems = (posts) => {
+    const displayDivider = (index, posts) => {
+      if (posts.length - index > 1) {
+        return (
+          <span className={styles.postSectionDivider}>&#8213;</span>
+        )
+      }
+    }
+
+    return posts.map((post, index, arr) => {
+      return (
+        <li key={index}>
+          <PostListItem
+            post={post}
+          />
+          {displayDivider(index, arr)}
+        </li>
+      )
+    })
+  }
+
   if (!posts.length) {
     return (
       <Layout isHomePage>
@@ -87,7 +101,7 @@ const BlogPostArchive = ({
     <Layout isHomePage>
       <Seo title="All posts" />
 
-      <ol style={{ listStyle: `none` }}>
+      <ol className={styles.postsList}>
         {renderPosts(posts)}
       </ol>
 
@@ -122,7 +136,7 @@ export const pageQuery = graphql`
         featuredImage {
           node {
             sourceUrl
-            gatsbyImage(width: 800, placeholder: DOMINANT_COLOR)
+            gatsbyImage(width: 616, placeholder: DOMINANT_COLOR)
           }
         }
       }

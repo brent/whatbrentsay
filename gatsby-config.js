@@ -36,13 +36,23 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/wbs-logo.png`, // This path is relative to the root of the site.
       },
     },
     {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: process.env.WPGRAPHQL_URL || `http://localhost:8000/graphql`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Noto Sans\:400,400i,700`,
+          `Source Serif 4\:700`,
+        ],
+        display: `swap`,
       },
     },
   ],

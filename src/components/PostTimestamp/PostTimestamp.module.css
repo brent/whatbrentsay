@@ -1,0 +1,6 @@
+.postTimestamp {
+  color: var(--color-primary);
+  font-size: var(--font-sm);
+  margin-top: var(--space-1);
+  text-transform: lowercase;
+}

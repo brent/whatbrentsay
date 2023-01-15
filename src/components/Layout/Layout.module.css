@@ -1,0 +1,11 @@
+.mainWrapper {
+  padding-bottom: var(--space-4);
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 37.5rem) {
+  .mainWrapper {
+    max-width: var(--size-content);
+  }
+}

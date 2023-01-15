@@ -12,8 +12,9 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
+import PostWrapper from "../../components/PostWrapper";
 
-import parse from 'html-react-parser';
+import { zettleDate } from "../../utils";
 
 const WpBlogPost = ({ data: { previous, next, post } }) => {
   [previous, next].forEach((post) => {
@@ -22,39 +23,13 @@ const WpBlogPost = ({ data: { previous, next, post } }) => {
     }
   });
 
-  const featuredImage = {
-    data: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
-    alt: post.featuredImage?.node?.alt || ``,
-  }
+  const pageTitleDate = zettleDate(post.date);
 
   return (
     <Layout>
-      <Seo title={post.title} description={post.excerpt} />
+      <Seo title={pageTitleDate} description={post.excerpt} />
 
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post.title}</h1>
-
-          <p>{post.date}</p>
-
-          {/* if we have a featured image for this post let's display it */}
-          {featuredImage?.data && (
-            <GatsbyImage
-              image={featuredImage.data}
-              alt={featuredImage.alt}
-              style={{ marginBottom: 50 }}
-            />
-          )}
-        </header>
-
-        {!!post.content && (
-          <section itemProp="articleBody">{parse(post.content)}</section>
-        )}
-      </article>
+      <PostWrapper post={post} />
 
       <nav className="blog-post-nav">
         <ul
@@ -100,7 +75,7 @@ export const pageQuery = graphql`
       excerpt
       content
       title
-      date(formatString: "MMMM DD, YYYY")
+      date
       featuredImage {
         node {
           altText

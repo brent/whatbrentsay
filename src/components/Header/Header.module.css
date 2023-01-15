@@ -1,0 +1,19 @@
+.headerWrapper {
+  margin: 0 auto;
+  padding: var(--space-4) 0 var(--space-6);
+  width: 100%;
+}
+
+.headerWrapper h1 {
+  text-align: center;
+}
+
+.headerWrapper .logoImg {
+  margin: 0 auto;
+}
+
+@media (min-width: 37.5rem) {
+  .headerWrapper {
+    max-width: var(--size-content);
+  }
+}
