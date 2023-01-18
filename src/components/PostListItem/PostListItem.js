@@ -7,6 +7,8 @@ import * as styles from './PostListItem.module.css';
 
 import PostTimestamp from '../PostTimestamp';
 
+import { POST_TYPE, getPostType } from '../../utils/postType';
+
 const PostListItem = ({ post }) => {
   post.uri = post.uri.replace(/index\.php\//, '');
 
@@ -14,57 +16,57 @@ const PostListItem = ({ post }) => {
     ? getImage(post.featuredImage.node)
     : null
 
-  const POST_TYPES = [
-    'short',
-    'long',
-    'feature',
-  ];
+  const postType = getPostType(post);
 
-  const postType = post.categories.nodes.find(category => {
-    return POST_TYPES.includes(category.name)
-      ? category.name
-      : null
-  });
+  const PostItem = ((postType) => {
+    switch(postType) {
+      case POST_TYPE.SHORT:
+        return (
+          <ShortPostItem
+            uri={post.uri}
+            title={post.title}
+            date={post.date}
+            excerpt={post.excerpt}
+          />
+        )
+      case POST_TYPE.LONG:
+        return (
+          <LongformPostItem
+            uri={post.uri}
+            title={post.title}
+            date={post.date}
+            excerpt={post.excerpt}
+            thumb={thumb}
+          />
+        )
+      case POST_TYPE.FEATURE:
+        return (
+          <FeaturePostItem
+            uri={post.uri}
+            title={post.title}
+            date={post.date}
+          />
+        )
+      default:
+        return null;
+    }
+  })(postType);
 
-  let PostItem;
-
-  switch(postType.name) {
-    case 'long':
-      PostItem = (
-        <LongformPostItem 
-          uri={post.uri}
-          title={post.title}
-          date={post.date}
-          excerpt={post.excerpt}
-          thumb={thumb}
-        />
-      )
-      break;
-    case 'short':
-      PostItem = (
-        <ShortPostItem
-          uri={post.uri}
-          title={post.title}
-          date={post.date}
-          excerpt={post.excerpt}
-        />
-      )
-      break;
-    case 'feature':
-      PostItem = (
-        <FeaturePostItem
-          uri={post.uri}
-          title={post.title}
-          date={post.date}
-        />
-      )
-      break;
-    default:
-      PostItem = null;
-  }
+  const postListItemTypeClass = ((postType) => {
+    switch (postType) {
+      case POST_TYPE.SHORT:
+        return styles.postListItem__short;
+      case POST_TYPE.LONG:
+        return styles.postListItem__long;
+      case POST_TYPE.FEATURE:
+        return styles.postListItem__feature;
+      default:
+        return null;
+    }
+  })(postType);
 
   return (
-    <div className={styles.postListItem}>
+    <div className={`${styles.postListItem} ${postListItemTypeClass}`}>
       {PostItem}
       <PostTimestamp date={post.date} />
     </div>
@@ -79,14 +81,14 @@ const ShortPostItem = ({
 }) => {
   const ShortPostWithTitle = ({ uri, title, excerpt }) => (
     <>
-      <h2 className={styles.postListItem__title}>
-        <Link to={uri}>
-          <span>{title}</span>
-        </Link>
-      </h2>
-      <div>
-        {parse(excerpt)}
-      </div>
+      <Link to={uri}>
+        <h2 className={styles.postListItem__title}>
+            <span>{title}</span>
+        </h2>
+        <div>
+          {parse(excerpt)}
+        </div>
+      </Link>
     </>
   );
 
@@ -108,9 +110,9 @@ const ShortPostItem = ({
           />
         ) : (
           <ShortPostWithTitle
-              uri={uri}
-              title={title}
-              excerpt={excerpt}
+            uri={uri}
+            title={title}
+            excerpt={excerpt}
           />
         )
       }
@@ -126,20 +128,20 @@ const LongformPostItem = ({
   thumb,
 }) => (
   <>
-    <h2 className={styles.postListItem__bigTitle}>
-      <Link to={uri}>
-        {title}
-      </Link>
-    </h2>
-    { thumb !== null
-        ? (
-          <div className={styles.postListItem__thumbWrapper}>
-            <GatsbyImage image={thumb} alt='' />
-          </div>
-        )
-        : null
-    }
-    {parse(excerpt)}
+    <Link to={uri}>
+      <h2 className={styles.postListItem__bigTitle}>
+          {title}
+      </h2>
+      { thumb !== null
+          ? (
+            <div className={styles.postListItem__thumbWrapper}>
+              <GatsbyImage image={thumb} alt='' />
+            </div>
+          )
+          : null
+      }
+      {parse(excerpt)}
+    </Link>
   </>
 )
 
@@ -149,11 +151,11 @@ const FeaturePostItem = ({
   date,
 }) => {
   <>
-    <h2 className={styles.postListItem__title}>
-      <Link to={uri}>
-        {title}
-      </Link>
-    </h2>
+    <Link to={uri}>
+      <h2 className={styles.postListItem__title}>
+          {title}
+      </h2>
+    </Link>
   </>
 }
 

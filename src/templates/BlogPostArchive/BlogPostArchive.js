@@ -21,7 +21,7 @@ const BlogPostArchive = ({
     return postsInSections.map((section, index, arr) => (
       <li key={index} className={styles.postSection}>
         <DateDivider date={section.date.valueOf()} />
-        <ol className={styles.postSection__postList}>
+        <ol>
           {renderPostListItems(section.posts)}
         </ol>
       </li>

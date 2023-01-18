@@ -1,7 +1,27 @@
-.mainWrapper {
-  padding-bottom: var(--space-4);
+.layoutWrapper {
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans);
+  font-size: var(--font-md);
+  line-height: 1.5rem;
+  min-height: 100vh;
   margin: 0 auto;
+  max-width: var(--size-content);
+}
+
+.mainWrapper {
+  flex-grow: 1;
+}
+
+.mainWrapper,
+.footerWrapper {
   width: 100%;
+}
+
+.footerWrapper {
+  font-size: var(--font-xs);
+  margin: var(--space-6) 0 var(--space-3);
 }
 
 @media (min-width: 37.5rem) {

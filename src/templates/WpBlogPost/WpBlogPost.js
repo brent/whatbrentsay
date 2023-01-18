@@ -1,6 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 
 // We're using Gutenberg so we need the block styles
 // these are copied into this project due to a conflict in the postCSS
@@ -28,36 +27,7 @@ const WpBlogPost = ({ data: { previous, next, post } }) => {
   return (
     <Layout>
       <Seo title={pageTitleDate} description={post.excerpt} />
-
       <PostWrapper post={post} />
-
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.uri} rel="prev">
-                ← {previous.title}
-              </Link>
-            )}
-          </li>
-
-          <li>
-            {next && (
-              <Link to={next.uri} rel="next">
-                {next.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
     </Layout>
   )
 }
@@ -76,6 +46,11 @@ export const pageQuery = graphql`
       content
       title
       date
+      categories {
+        nodes {
+          name
+        }
+      }
       featuredImage {
         node {
           altText

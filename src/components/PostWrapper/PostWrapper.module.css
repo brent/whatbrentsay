@@ -1,6 +1,19 @@
+.postTitle,
+.postTitle__bigTitle {
+  color: var(--color-text-dark);
+  font-weight: 700;
+}
+
 .postTitle {
-  font-size: var(--font-xl);
+  font-size: var(--font-lg);
   margin-bottom: 0;
+}
+
+.postTitle__bigTitle {
+  font-family: var(--font-serif);
+  font-size: var(--font-xl);
+  font-family: var(--font-serif);
+  line-height: 2rem;
 }
 
 .postHeader {
@@ -14,21 +27,43 @@
 .postWrapper h6,
 .postWrapper p,
 .postWrapper figure,
+.postWrapper blockquote,
 .postWrapper ol,
 .postWrapper ul {
+  margin-bottom: var(--space-5);
+}
+
+.postWrapper blockquote > p,
+.postWrapper blockquote > cite {
+  margin-bottom: 0;
+}
+
+.postWrapper blockquote {
+  border-left: solid var(--space-1) var(--color-primary);
+  padding-left: var(--space-2);
+}
+
+.postWrapper blockquote p {
+  font-family: var(--font-serif);
+  font-size: var(--font-lg);
+  font-weight: 400;
   margin-bottom: var(--space-2);
 }
 
+.postWrapper blockquote cite {
+  font-size: var(--font-sm);
+}
+
 .postWrapper ol {
-  margin-left: var(--space-3);
+  margin-left: var(--space-4);
 }
 
 .postWrapper ul {
-  margin-left: var(--space-2);
+  margin-left: var(--space-3);
 }
 
 /* corrects first list item spacing */
 .postWrapper p + ol,
 .postWrapper p + ul {
-  margin-top: calc(var(--space-2) * -1);
+  margin-top: calc(var(--space-5) * -1);
 }

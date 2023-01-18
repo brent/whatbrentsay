@@ -1,9 +1,11 @@
 :root {
   --border-radius: 4px;
+  --color-text: #606060;
+  --color-text-light: #767676;
   --color-text-dark: #362C38;
-  --color-primary: #7026b9;
+  --color-primary: #A168AB;
   --color-code-bg: #fff4db;
-  --color-code: #8a6534;
+  --color-code: #8a6534; /* ??? */
   --font-sans: "Noto Sans", sans-serif;
   --font-serif: "Source Serif 4", serif;
   --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",

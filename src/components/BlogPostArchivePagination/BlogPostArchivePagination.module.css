@@ -1,1 +1,3 @@
-.BlogPostArchivePagination { }
+.blogPostArchivePagination {
+  margin-top: var(--space-5);
+}

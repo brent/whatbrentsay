@@ -5,16 +5,20 @@ import * as styles from './BlogPostArchivePagination.module.css';
 const BlogPostArchivePagination = ({
   previousPagePath,
   nextPagePath,
-}) => (
-  <div className={styles.BlogPostArchivePagination}>
-    {previousPagePath && (
-      <>
-        <Link to={previousPagePath}>Previous page</Link>
-      </>
-    )}
-    {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
-  </div>
-);
+}) => {
+  if (!previousPagePath && !nextPagePath) return;
+
+  return (
+    <div className={styles.blogPostArchivePagination}>
+      {previousPagePath && (
+        <>
+          <Link to={previousPagePath}>Previous page</Link>
+        </>
+      )}
+      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+    </div>
+  )
+};
 
 export default BlogPostArchivePagination;
 

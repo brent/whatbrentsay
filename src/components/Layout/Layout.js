@@ -25,20 +25,13 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
+    <div className={styles.layoutWrapper}>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div className={styles.mainWrapper}>
-        <main className="">{children}</main>
-        <footer
-          style={{
-            marginTop: `var(--space-6)`,
-            fontSize: `var(--font-sm)`,
-          }}
-        >
-          © {new Date().getFullYear()} | words by <a href="https://whatbrentdo.com">brent</a>
-        </footer>
-      </div>
-    </>
+      <main className={styles.mainWrapper}>{children}</main>
+      <footer className={styles.footerWrapper}>
+        {data.site.siteMetadata?.title} © {new Date().getFullYear()} | words by <a href="https://whatbrentdo.com">brent</a>
+      </footer>
+    </div>
   )
 }
 
