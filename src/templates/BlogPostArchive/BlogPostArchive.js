@@ -39,6 +39,7 @@ const BlogPostArchive = ({
       if (postsInDay.posts.length < 1) {
         postsInDay.date = new Date(post.date);
         postsInDay.posts = [...postsInDay.posts, post];
+        groupedPosts = [postsInDay];
         return;
       }
 
