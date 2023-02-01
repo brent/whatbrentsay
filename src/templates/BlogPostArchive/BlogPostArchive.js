@@ -28,41 +28,55 @@ const BlogPostArchive = ({
     ))
   }
 
+  // TODO: make this function better
   const groupPostsByDate = (posts) => {
-    let groupedPosts = [];
-    let postsInDay = {
-      date: null,
-      posts: [],
-    };
+    const isSameDay = (date1, date2) => (
+      date1.getMonth() === date2.getMonth()
+        && date1.getDate() === date2.getDate()
+        && date1.getYear() === date2.getYear()
+    )
+
+    const addPostToSection = (post) => {
+      postSectionPosts.push(post);
+    }
+
+    const addSectionToList = () => {
+      postList.push({
+        date: postSectionDate,
+        posts: postSectionPosts,
+      });
+    }
+
+    const resetPostSection = () => {
+      postSectionDate = null;
+      postSectionPosts = [];
+    }
+
+    let postList = [];
+    let postSectionDate = null;
+    let postSectionPosts = [];
 
     posts.forEach((post, index) => {
-      if (postsInDay.posts.length < 1) {
-        postsInDay.date = new Date(post.date);
-        postsInDay.posts = [...postsInDay.posts, post];
-        groupedPosts = [postsInDay];
+      postSectionDate ||= new Date(post.date);
+
+      if (isSameDay(new Date(post.date), postSectionDate)) {
+        addPostToSection(post);
+      }
+
+      if (!isSameDay(new Date(post.date), postSectionDate)) {
+        addSectionToList();
+        resetPostSection();
+        postSectionDate = new Date(post.date);
+        addPostToSection(post);
         return;
-      }
-
-      const lastPostInDay = new Date(postsInDay.posts[postsInDay.posts.length - 1].date);
-      const postDate = new Date(post.date);
-
-      if (postDate.getDate() === lastPostInDay.getDate()) {
-        postsInDay.posts = [...postsInDay.posts, post];
-      }
-
-      if (postDate.getDate() !== lastPostInDay.getDate()) {
-        groupedPosts = [...groupedPosts, postsInDay];
-        postsInDay = {};
-        postsInDay.date = new Date(post.date);
-        postsInDay.posts = [post];
-      }
-
-      if (posts.length - 1 === index) {
-        groupedPosts = [...groupedPosts, postsInDay];
       }
     });
 
-    return groupedPosts;
+    if (postSectionPosts.length > 0) {
+      addSectionToList();
+      resetPostSection();
+    }
+    return postList;
   }
 
   const renderPostListItems = (posts) => {
