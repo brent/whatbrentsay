@@ -8,6 +8,7 @@ import * as styles from './PostListItem.module.css';
 import PostTimestamp from '../PostTimestamp';
 
 import { POST_TYPE, getPostType } from '../../utils/postType';
+import { untitledPostUri } from '../../utils';
 
 const PostListItem = ({ post }) => {
   post.uri = post.uri.replace(/index\.php\//, '');
@@ -23,7 +24,7 @@ const PostListItem = ({ post }) => {
       case POST_TYPE.SHORT:
         return (
           <ShortPostItem
-            uri={post.uri}
+            uri={post.title ? post.uri : untitledPostUri(post.date)}
             title={post.title}
             date={post.date}
             excerpt={post.excerpt}
