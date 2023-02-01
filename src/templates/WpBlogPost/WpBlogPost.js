@@ -22,11 +22,11 @@ const WpBlogPost = ({ data: { previous, next, post } }) => {
     }
   });
 
-  const pageTitleDate = zettleDate(post.date);
+  const pageTitle = post.title ? post.title : zettleDate(post.date);
 
   return (
     <Layout>
-      <Seo title={pageTitleDate} description={post.excerpt} />
+      <Seo title={pageTitle} description={post.excerpt} />
       <PostWrapper post={post} />
     </Layout>
   )
