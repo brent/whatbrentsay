@@ -68,3 +68,8 @@
 .postWrapper p + ul {
   margin-top: calc(var(--space-5) * -1);
 }
+
+/* corrects blockquote following p spacing */
+.postWrapper p + blockquote {
+  margin-top: calc(var(--space-4) * -1);
+}
