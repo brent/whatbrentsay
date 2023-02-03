@@ -49,7 +49,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--color-primary);
   cursor: pointer;
 }
 
@@ -92,6 +92,12 @@ ol {
 
 ul {
   list-style-type: "⁃ ";
+}
+
+hr {
+  color: var(--color-text-light);
+  margin: 0 auto var(--space-4);
+  width: 20%;
 }
 
 @media (min-width: 38.5rem) {
