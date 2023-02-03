@@ -10,12 +10,18 @@ const BlogPostArchivePagination = ({
 
   return (
     <div className={styles.blogPostArchivePagination}>
-      {previousPagePath && (
-        <>
-          <Link to={previousPagePath}>Previous page</Link>
-        </>
-      )}
-      {nextPagePath && <Link to={nextPagePath}>Next page</Link>}
+      {previousPagePath ?
+        (
+          <>
+            <Link to={previousPagePath}>&larr; newer</Link>
+          </>
+        ) : (
+          <>
+            <span></span>
+          </>
+        )
+      }
+      {nextPagePath && <Link to={nextPagePath}>older &rarr;</Link>}
     </div>
   )
 };
