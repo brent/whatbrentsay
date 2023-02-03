@@ -61,9 +61,9 @@ async function createWpBlogPostPages({ wpPosts, createPage }) {
       post.uri = post.uri.replace(/index\.php\//, '');
 
       if (!post.title) {
-        // because gatsby-node doesn't support 'import'
-        // this closure is a copy and paste from
-        // untititledPostUri in ./src/utils
+        // because gatsby-node doesn't support imports
+        // without some hoop jumping this closure is a
+        // copy and paste of untititledPostUri from ./src/utils
         const postUri = ((postDate) => {
           const padNum = (num) => `0${num}`;
 
