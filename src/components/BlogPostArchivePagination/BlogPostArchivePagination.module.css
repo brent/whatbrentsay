@@ -1,0 +1,15 @@
+.blogPostArchivePagination {
+  color: var(--color-primary);
+  display: grid;
+  font-size: var(--font-sm);
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--space-5);
+}
+
+.blogPostArchivePagination > *:nth-child(2) {
+  text-align: right;
+}
+
+.blogPostArchivePagination a {
+  text-decoration: underline;
+}

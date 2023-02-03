@@ -1,0 +1,15 @@
+.postsList,
+.postsList ol,
+.postsList ul {
+  list-style-type: none;
+}
+
+.postSection {
+  margin-bottom: var(--space-6);
+}
+
+.postSectionDivider {
+  color: #ddd;
+  display: block;
+  transform: translate(0, calc(var(--space-2) * -1));
+}
