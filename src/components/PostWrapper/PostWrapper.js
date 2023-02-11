@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import parse from 'html-react-parser';
 import PostTimestamp from '../PostTimestamp';
 import { POST_TYPE, getPostType } from '../../utils/postType';
+import TagList from '../TagList';
 
 const PostWrapper = ({ post }) => {
   const featuredImage = {
@@ -26,6 +27,10 @@ const PostWrapper = ({ post }) => {
           date={post.date}
           format='date'
         />
+        { post.tags.nodes.length > 0
+            ? <TagList postTagNodes={post.tags.nodes} />
+            : null
+        }
 
         {featuredImage?.data && (
           <GatsbyImage
@@ -37,7 +42,10 @@ const PostWrapper = ({ post }) => {
       </header>
 
       {!!post.content && (
-        <section itemProp="articleBody">{parse(post.content)}</section>
+        <section
+          className={styles.postContent}
+          itemProp="articleBody"
+        >{parse(post.content)}</section>
       )}
     </article>
   )

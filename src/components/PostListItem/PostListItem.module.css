@@ -31,7 +31,6 @@
   font-family: var(--font-serif);
   font-size: var(--font-xl);
   line-height: 2rem;
-  margin-bottom: var(--space-3);
 }
 
 .postListItem__short { }

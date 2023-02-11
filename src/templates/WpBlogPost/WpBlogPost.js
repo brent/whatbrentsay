@@ -65,6 +65,11 @@ export const pageQuery = graphql`
           }
         }
       }
+      tags {
+        nodes {
+          name
+        }
+      }
     }
     previous: wpPost(id: { eq: $previousPostId }) {
       uri

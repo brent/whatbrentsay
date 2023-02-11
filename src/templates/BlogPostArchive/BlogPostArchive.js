@@ -154,6 +154,11 @@ export const pageQuery = graphql`
             gatsbyImage(width: 616, placeholder: DOMINANT_COLOR)
           }
         }
+        tags {
+          nodes {
+            name
+          }
+        }
       }
     }
   }

@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 import * as styles from './PostListItem.module.css';
 
 import PostTimestamp from '../PostTimestamp';
+import TagList from '../TagList';
 
 import { POST_TYPE, getPostType } from '../../utils/postType';
 import { untitledPostUri } from '../../utils';
@@ -69,6 +70,10 @@ const PostListItem = ({ post }) => {
   return (
     <div className={`${styles.postListItem} ${postListItemTypeClass}`}>
       {PostItem}
+      { post.tags.nodes.length > 0
+        ? <TagList postTagNodes={post.tags.nodes} />
+        : null
+      }
       <PostTimestamp date={post.date} />
     </div>
   );
