@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as styles from './TagList.module.css';
-import parse from 'html-react-parser';
-
-const Tag = (tagName) => <li className={styles.tag}>{tagName}</li>
-
 
 const TagList = ({ postTagNodes }) => {
+
   const tagsArray = postTagNodes.map(tag => tag.name);
+  tagsArray.sort();
+
+  const Tag = ({ tagName }) => <li className={styles.tag}>#{tagName}</li>
 
   const renderTagList = tagsArray => {
-    return tagsArray.map(tag => parse(`<li>#${tag}</li>`));
+    return tagsArray.map(tag => <Tag key={tag} tagName={tag} />)
   }
 
   return (
