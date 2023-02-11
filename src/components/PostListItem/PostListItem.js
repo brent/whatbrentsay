@@ -86,9 +86,7 @@ const ShortPostItem = ({
         <h2 className={styles.postListItem__title}>
             <span>{title}</span>
         </h2>
-        <div>
-          {parse(excerpt)}
-        </div>
+        {parse(excerpt)}
       </Link>
     </>
   );
@@ -101,19 +99,30 @@ const ShortPostItem = ({
     </>
   );
 
+  const formatExcerpt = (excerpt, length=140) => {
+    const excerptWithoutHEllip = excerpt.replace(' [&hellip;]', '');
+    const paragraphText = excerptWithoutHEllip.split('<p>')[1].split('</p>')[0];
+    const moreIndicator = '&hellip;';
+    const trimmedExcerpt = paragraphText.slice(0, length);
+
+    return excerptWithoutHEllip.split('').length > length
+      ? `<p>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
+      : `<p>${trimmedExcerpt}</p>`;
+  }
+
   return (
     <>
       { title === null || title === ''
         ? (
           <ShortPostWithoutTitle
             uri={uri}
-            excerpt={excerpt}
+            excerpt={formatExcerpt(excerpt)}
           />
         ) : (
           <ShortPostWithTitle
             uri={uri}
             title={title}
-            excerpt={excerpt}
+            excerpt={formatExcerpt(excerpt, 70)}
           />
         )
       }
@@ -141,7 +150,6 @@ const LongformPostItem = ({
           )
           : null
       }
-      {parse(excerpt)}
     </Link>
   </>
 )
