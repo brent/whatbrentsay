@@ -30,7 +30,7 @@
 .postListItem__bigTitle {
   font-family: var(--font-serif);
   font-size: var(--font-xl);
-  line-height: 2rem;
+  line-height: 2.25rem;
 }
 
 .postListItem__short { }

@@ -1,5 +1,8 @@
+.postWrapper { }
+
 .postTitle,
-.postTitle__bigTitle {
+.postTitle__bigTitle,
+.postContent h2 {
   color: var(--color-text-dark);
   font-weight: 700;
 }
@@ -9,16 +12,33 @@
   margin-bottom: 0;
 }
 
-.postTitle__bigTitle {
+.postTitle__bigTitle,
+.postContent h2 {
   font-family: var(--font-serif);
   font-size: var(--font-xl);
-  font-family: var(--font-serif);
-  line-height: 2rem;
+  line-height: 2.25rem;
 }
 
 .postHeader {
   margin-bottom: var(--space-4);
 }
+
+.postContent h2,
+.postContent h3,
+.postContent h4,
+.postContent h5,
+.postContent h6 {
+  font-family: var(--font-serif);
+}
+
+.postContent h2 {
+  margin-top: var(--space-6);
+}
+
+.postContent h3 { }
+.postContent h4 { }
+.postContent h5 { }
+.postContent h6 { }
 
 .postContent h2,
 .postContent h3,
@@ -73,3 +93,13 @@
 .postContent p + blockquote {
   margin-top: calc(var(--space-4) * -1);
 }
+
+/* corrects paragraph following heading spacing */
+.postContent h2 + p {
+  margin-top: calc(var(--space-3) * -1);
+}
+
+.postContent h3 + p { }
+.postContent h4 + p { }
+.postContent h5 + p { }
+.postContent h6 + p { }
