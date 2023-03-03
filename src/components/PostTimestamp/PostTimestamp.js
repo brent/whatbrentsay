@@ -21,7 +21,6 @@ const PostTimestamp = ({ date, format='time' }) => {
 
     const timestamp = getTimestamp(date);
 
-    console.log('date stamp', `${month} ${day}, ${year} ${timestamp}`);
     return `${month} ${day}, ${year} ${timestamp}`;
   }
 
