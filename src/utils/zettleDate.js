@@ -1,11 +1,11 @@
 export const zettleDate = (date) => {
-  const dateObj = new Date(date);
-  const year = dateObj.getFullYear();
-  const month = dateObj.getMonth() + 1; // month is 0 indexed
-  const day = dateObj.getDate();
-  
-  const padNum = (num) => num < 10 ? `${num}` : num;
+  const padNum = (num) => num < 10 ? `0${num}` : num;
 
+  const dateObj = new Date(date);
+
+  const year = dateObj.getFullYear();
+  const month = ((month) => padNum(month + 1))(dateObj.getMonth()); // month is 0 indexed
+  const day = ((day) => padNum(day))(dateObj.getDate());
   const hours = ((hours) => padNum(hours))(dateObj.getHours());
   const minutes = ((minutes) => padNum(minutes))(dateObj.getMinutes());
 
