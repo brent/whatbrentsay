@@ -94,8 +94,9 @@
   margin-top: calc(var(--space-4) * -1);
 }
 
-/* corrects paragraph following heading spacing */
-.postContent h2 + p {
+/* corrects paragraph, list following heading spacing */
+.postContent h2 + p,
+.postContent h2 + ul {
   margin-top: calc(var(--space-3) * -1);
 }
 
