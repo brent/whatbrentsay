@@ -90,9 +90,7 @@ ol {
   list-style-type: decimal;
 }
 
-ul {
-  list-style-type: "⁃ ";
-}
+ul { }
 
 hr {
   color: var(--color-text-light);

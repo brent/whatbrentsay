@@ -104,3 +104,7 @@
 .postContent h4 + p { }
 .postContent h5 + p { }
 .postContent h6 + p { }
+
+.postContent ul > li > ul {
+  margin-bottom: 0;
+}
