@@ -143,6 +143,7 @@ export const pageQuery = graphql`
         uri
         date
         title
+        content
         categories {
           nodes {
             name

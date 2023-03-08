@@ -47,6 +47,8 @@ const PostListItem = ({ post }) => {
             uri={post.uri}
             title={post.title}
             date={post.date}
+            excerpt={post.excerpt}
+            content={post.content}
           />
         )
       default:
@@ -146,7 +148,7 @@ const LongformPostItem = ({
 }) => (
   <>
     <Link to={uri}>
-      <h2 className={styles.postListItem__bigTitle}>
+      <h2 className={`${styles.postListItem__title} ${styles.postListItem__bigTitle}`}>
           {title}
       </h2>
       { thumb !== null
@@ -166,14 +168,22 @@ const FeaturePostItem = ({
   uri,
   title,
   date,
+  excerpt,
+  content,
 }) => {
-  <>
-    <Link to={uri}>
-      <h2 className={styles.postListItem__title}>
-          {title}
-      </h2>
-    </Link>
-  </>
+  const regex = /<p><a href="(?<href>.*)">(?<label>.*)<\/a><\/p>/;
+  const { href } = content.match(regex).groups;
+
+  return (
+    <>
+      <Link to={href}>
+        <h2 className={`${styles.postListItem__title} ${styles.postListItem__hugeTitle}`}>
+            {title}
+        </h2>
+        { excerpt ? parse(excerpt) : null }
+      </Link>
+    </>
+  )
 }
 
 export default PostListItem;
