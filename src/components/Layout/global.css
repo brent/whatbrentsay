@@ -98,6 +98,11 @@ hr {
   width: 20%;
 }
 
+sup,
+sub {
+  font-size: 0.75rem;
+}
+
 @media (min-width: 38.5rem) {
   body {
     padding: 0;
