@@ -79,6 +79,17 @@ const PostListItem = ({ post }) => {
   );
 };
 
+const formatExcerpt = (excerpt, length=240) => {
+  const excerptWithoutHEllip = excerpt.replace(' [&hellip;]', '');
+  const paragraphText = excerptWithoutHEllip.split('<p>')[1].split('</p>')[0];
+  const moreIndicator = '&hellip;';
+  const trimmedExcerpt = paragraphText.slice(0, length);
+
+  return excerptWithoutHEllip.split('').length > length
+    ? `<p>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
+    : `<p>${trimmedExcerpt}</p>`;
+}
+
 const ShortPostItem = ({
   uri,
   title,
@@ -104,16 +115,7 @@ const ShortPostItem = ({
     </>
   );
 
-  const formatExcerpt = (excerpt, length=140) => {
-    const excerptWithoutHEllip = excerpt.replace(' [&hellip;]', '');
-    const paragraphText = excerptWithoutHEllip.split('<p>')[1].split('</p>')[0];
-    const moreIndicator = '&hellip;';
-    const trimmedExcerpt = paragraphText.slice(0, length);
-
-    return excerptWithoutHEllip.split('').length > length
-      ? `<p>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
-      : `<p>${trimmedExcerpt}</p>`;
-  }
+  const formattedExcerpt = formatExcerpt(excerpt)
 
   return (
     <>
@@ -121,13 +123,13 @@ const ShortPostItem = ({
         ? (
           <ShortPostWithoutTitle
             uri={uri}
-            excerpt={formatExcerpt(excerpt)}
+            excerpt={formattedExcerpt}
           />
         ) : (
           <ShortPostWithTitle
             uri={uri}
             title={title}
-            excerpt={formatExcerpt(excerpt, 70)}
+            excerpt={formattedExcerpt}
           />
         )
       }
@@ -155,6 +157,7 @@ const LongformPostItem = ({
           )
           : null
       }
+      {parse(formatExcerpt(excerpt))}
     </Link>
   </>
 )
