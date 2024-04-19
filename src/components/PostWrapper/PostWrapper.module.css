@@ -108,3 +108,12 @@
 .postContent ul > li > ul {
   margin-bottom: 0;
 }
+
+/* corrects WP video embeds */
+.postContent .wp-video {
+  width: 100% !important;
+}
+
+.postContent .wp-video .wp-video-shortcode {
+  height: auto !important;
+}
