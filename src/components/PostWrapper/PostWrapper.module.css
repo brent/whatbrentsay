@@ -117,3 +117,35 @@
 .postContent .wp-video .wp-video-shortcode {
   height: auto !important;
 }
+
+.postContent table {
+  font-size: 1rem;
+  line-height: normal;
+}
+
+.postContent th {
+  text-align: left;
+}
+
+.postContent td {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+  vertical-align: top;
+}
+
+.postContent tr td:first-child {
+  padding-right: 0.5rem;
+}
+
+.postContent tr td:last-child {
+  padding-left: 0.5rem;
+}
+
+.postContent tr:first-child td {
+  padding-top: 0;
+}
+
+.postContent tr:last-child td {
+  padding-bottom: 0;
+  border-bottom: none;
+}
