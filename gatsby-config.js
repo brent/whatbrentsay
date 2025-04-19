@@ -15,16 +15,6 @@ module.exports = {
     siteUrl: `https://whatbrentsay.com`,
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-umami`,
-      options: {
-        websiteId: 'eb11c726-36cf-4277-822b-65abd166dbf8',
-        srcUrl: 'https://analytics.whatbrentdo.com/umami.js',
-        includeInDevelopment: false,
-        autoTrack: true,
-        repsectDoNotTrack: true
-      },
-    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
