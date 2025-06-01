@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
 import * as styles from './PostListItem.module.css';
@@ -49,6 +49,7 @@ const PostListItem = ({ post }) => {
             date={post.date}
             excerpt={post.excerpt}
             content={post.content}
+            thumb={thumb}
           />
         )
       default:
@@ -76,7 +77,6 @@ const PostListItem = ({ post }) => {
         ? <TagList postTagNodes={post.tags.nodes} />
         : null
       }
-      <PostTimestamp date={post.date} />
     </div>
   );
 };
@@ -88,8 +88,8 @@ const formatExcerpt = (excerpt, length = 240) => {
   const trimmedExcerpt = paragraphText.slice(0, length);
 
   return excerptWithoutHEllip.split('').length > length
-    ? `<p>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
-    : `<p>${trimmedExcerpt}</p>`;
+    ? `<p className=${styles.postExcerpt}>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
+    : `<p className=${styles.postExcerpt}>${trimmedExcerpt}</p>`;
 }
 
 const ShortPostItem = ({
@@ -170,6 +170,7 @@ const FeaturePostItem = ({
   date,
   excerpt,
   content,
+  thumb,
 }) => {
   const regex = /<p><a href="(?<href>.*)">(?<label>.*)<\/a><\/p>/;
   const { href } = content.match(regex).groups;
@@ -177,10 +178,22 @@ const FeaturePostItem = ({
   return (
     <>
       <Link to={href}>
+        {thumb !== null
+          ? (
+            <div className={styles.postListItem__thumbWrapper}>
+              <GatsbyImage image={thumb} alt='' />
+            </div>
+          )
+          : (
+            <div className={styles.postListItem__thumbWrapper}>
+              <StaticImage src='../../images/wbs-feature-placeholder-cover.png' alt='' />
+            </div>
+          )
+        }
         <h3 className={`${styles.postListItem__title} ${styles.postListItem__hugeTitle}`}>
           {title}
         </h3>
-        {excerpt ? parse(excerpt) : null}
+        {parse(formatExcerpt(excerpt))}
       </Link>
     </>
   )

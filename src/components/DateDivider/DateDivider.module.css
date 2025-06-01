@@ -1,21 +1,17 @@
 .dateDivider {
-  border-bottom: 0.0625rem solid #ddd;
-  color: var(--color-text-dark);
-  font-weight: bold;
-  margin-bottom: calc(var(--space-3) + var(--space-2));
-  padding-bottom: var(--space-2);
+  font-size: var(--font-xs);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-1);
 }
 
 .dateDivider__weekday {
-  font-weight: normal;
-  color: var(--color-text-light);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 5%;
 }
 
-.dateDivider__month {
-}
-
-.dateDivider__day {
-}
-
+.dateDivider__day,
+.dateDivider__month,
 .dateDivider__year {
+  font-weight: 600;
 }

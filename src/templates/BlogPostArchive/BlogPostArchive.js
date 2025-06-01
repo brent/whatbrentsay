@@ -28,23 +28,17 @@ const BlogPostArchive = ({
   }
 
   const featurePosts = getFeaturePosts(posts)
-  console.log('featurePosts', featurePosts)
-
   const mostRecentPost = posts.splice(0, 1)[0]
-  console.log('mostRecentPost', mostRecentPost)
-
 
   const renderPosts = (posts) => {
-    const postsInSections = groupPostsByDate(posts);
-
-    return postsInSections.map((section, index, arr) => (
-      <li key={index} className={styles.postSection}>
-        <DateDivider date={section.date.valueOf()} />
-        <ol>
-          {renderPostListItems(section.posts)}
-        </ol>
-      </li>
-    ))
+    return posts.map((post, index, arr) => {
+      return (
+        <li className={styles.postListItems} key={index}>
+          <DateDivider date={post.date} />
+          <PostListItem post={post} />
+        </li>
+      )
+    })
   }
 
   // TODO: make this function better
@@ -98,27 +92,6 @@ const BlogPostArchive = ({
     return postList;
   }
 
-  const renderPostListItems = (posts) => {
-    const displayDivider = (index, posts) => {
-      if (posts.length - index > 1) {
-        return (
-          <span className={styles.postSectionDivider}>&#8213;</span>
-        )
-      }
-    }
-
-    return posts.map((post, index, arr) => {
-      return (
-        <li key={index}>
-          <PostListItem
-            post={post}
-          />
-          {displayDivider(index, arr)}
-        </li>
-      )
-    })
-  }
-
   if (!posts.length) {
     return (
       <Layout isHomePage>
@@ -137,15 +110,20 @@ const BlogPostArchive = ({
 
       <div className={styles.mostRecentPostWrapper}>
         <h2 className={styles.postsSectionHeading}>Latest</h2>
+        <DateDivider date={mostRecentPost.date} />
         <PostListItem post={mostRecentPost} />
       </div>
 
+      <span className={styles.postSectionDivider}></span>
+
       <div className={styles.featurePostsWrapper}>
-        <h2 className={styles.postsSectionHeading}>Features</h2>
+        <h2 className={styles.postsSectionHeading}>All Features</h2>
         <ol className={styles.featurePosts}>
           {renderPosts(featurePosts)}
         </ol>
       </div>
+
+      <span className={styles.postSectionDivider}></span>
 
       <div className={styles.postsListWrapper}>
         <h2 className={styles.postsSectionHeading}>Everything Else</h2>
@@ -153,11 +131,6 @@ const BlogPostArchive = ({
           {renderPosts(posts)}
         </ol>
       </div>
-
-      <BlogPostArchivePagination
-        previousPagePath={previousPagePath}
-        nextPagePath={nextPagePath}
-      />
     </Layout>
   )
 }
@@ -165,11 +138,9 @@ const BlogPostArchive = ({
 export default BlogPostArchive
 
 export const pageQuery = graphql`
-  query WordPressPostArchive($offset: Int!, $postsPerPage: Int!) {
+  query WordPressPostArchive {
     allWpPost(
       sort: { date: DESC },
-      limit: $postsPerPage
-      skip: $offset
     ) {
       nodes {
         id

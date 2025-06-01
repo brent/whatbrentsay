@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as styles from './PostTimestamp.module.css';
 
-const PostTimestamp = ({ date, format='time' }) => {
+const PostTimestamp = ({ date, format = 'time' }) => {
   const dateObj = new Date(date);
 
   const getTimestamp = date => {
@@ -37,7 +37,7 @@ const PostTimestamp = ({ date, format='time' }) => {
       displayTime = '???';
   }
 
-  return <p className={styles.postTimestamp}>{displayTime}</p>;
+  return <span className={styles.postTimestamp}>{displayTime}</span>;
 };
 
 export default PostTimestamp;
