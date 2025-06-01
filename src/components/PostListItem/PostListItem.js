@@ -21,7 +21,7 @@ const PostListItem = ({ post }) => {
   const postType = getPostType(post);
 
   const PostItem = ((postType) => {
-    switch(postType) {
+    switch (postType) {
       case POST_TYPE.SHORT:
         return (
           <ShortPostItem
@@ -72,7 +72,7 @@ const PostListItem = ({ post }) => {
   return (
     <div className={`${styles.postListItem} ${postListItemTypeClass}`}>
       {PostItem}
-      { post.tags.nodes.length > 0
+      {post.tags.nodes.length > 0
         ? <TagList postTagNodes={post.tags.nodes} />
         : null
       }
@@ -81,7 +81,7 @@ const PostListItem = ({ post }) => {
   );
 };
 
-const formatExcerpt = (excerpt, length=240) => {
+const formatExcerpt = (excerpt, length = 240) => {
   const excerptWithoutHEllip = excerpt.replace(' [&hellip;]', '');
   const paragraphText = excerptWithoutHEllip.split('<p>')[1].split('</p>')[0];
   const moreIndicator = '&hellip;';
@@ -101,9 +101,9 @@ const ShortPostItem = ({
   const ShortPostWithTitle = ({ uri, title, excerpt }) => (
     <>
       <Link to={uri}>
-        <h2 className={styles.postListItem__title}>
-            <span>{title}</span>
-        </h2>
+        <h3 className={styles.postListItem__title}>
+          <span>{title}</span>
+        </h3>
         {parse(excerpt)}
       </Link>
     </>
@@ -121,7 +121,7 @@ const ShortPostItem = ({
 
   return (
     <>
-      { title === null || title === ''
+      {title === null || title === ''
         ? (
           <ShortPostWithoutTitle
             uri={uri}
@@ -148,16 +148,16 @@ const LongformPostItem = ({
 }) => (
   <>
     <Link to={uri}>
-      <h2 className={`${styles.postListItem__title} ${styles.postListItem__bigTitle}`}>
-          {title}
-      </h2>
-      { thumb !== null
-          ? (
-            <div className={styles.postListItem__thumbWrapper}>
-              <GatsbyImage image={thumb} alt='' />
-            </div>
-          )
-          : null
+      <h3 className={`${styles.postListItem__title} ${styles.postListItem__bigTitle}`}>
+        {title}
+      </h3>
+      {thumb !== null
+        ? (
+          <div className={styles.postListItem__thumbWrapper}>
+            <GatsbyImage image={thumb} alt='' />
+          </div>
+        )
+        : null
       }
       {parse(formatExcerpt(excerpt))}
     </Link>
@@ -177,10 +177,10 @@ const FeaturePostItem = ({
   return (
     <>
       <Link to={href}>
-        <h2 className={`${styles.postListItem__title} ${styles.postListItem__hugeTitle}`}>
-            {title}
-        </h2>
-        { excerpt ? parse(excerpt) : null }
+        <h3 className={`${styles.postListItem__title} ${styles.postListItem__hugeTitle}`}>
+          {title}
+        </h3>
+        {excerpt ? parse(excerpt) : null}
       </Link>
     </>
   )

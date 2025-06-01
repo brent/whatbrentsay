@@ -1,11 +1,42 @@
 .postsList,
 .postsList ol,
-.postsList ul {
+.postsList ul,
+.featurePostsWrapper ol {
   list-style-type: none;
+}
+
+.mostRecentPostWrapper,
+.featurePostsWrapper {
+  margin-bottom: 2rem;
+}
+
+.featurePosts {
+  display: flex;
+  flex: row nowrap;
+  gap: 0.5rem;
+  overflow-y: scroll;
+}
+
+.featurePosts li {
+  flex: 1 0 5%;
+  min-width: 66%;
+}
+
+.postsSectionHeading {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  font-size: var(--font-xs);
+  letter-spacing: 15%;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .postSection {
   margin-bottom: var(--space-6);
+}
+
+.featurePosts .postSection {
+  margin-bottom: 0;
 }
 
 .postSectionDivider {

@@ -7,6 +7,8 @@ import DateDivider from "../../components/DateDivider";
 import PostListItem from "../../components/PostListItem";
 import BlogPostArchivePagination from "../../components/BlogPostArchivePagination";
 
+import { POST_TYPE, getPostType } from '../../utils/postType.js'
+
 import * as styles from './BlogPostArchive.module.css';
 
 const BlogPostArchive = ({
@@ -14,6 +16,23 @@ const BlogPostArchive = ({
   pageContext: { nextPagePath, previousPagePath },
 }) => {
   const posts = data.allWpPost.nodes;
+
+  const getFeaturePosts = (posts) => {
+    let featurePosts = []
+
+    posts.forEach(post => {
+      if (POST_TYPE.FEATURE === getPostType(post)) featurePosts.push(post)
+    })
+
+    return featurePosts
+  }
+
+  const featurePosts = getFeaturePosts(posts)
+  console.log('featurePosts', featurePosts)
+
+  const mostRecentPost = posts.splice(0, 1)[0]
+  console.log('mostRecentPost', mostRecentPost)
+
 
   const renderPosts = (posts) => {
     const postsInSections = groupPostsByDate(posts);
@@ -32,8 +51,8 @@ const BlogPostArchive = ({
   const groupPostsByDate = (posts) => {
     const isSameDay = (date1, date2) => (
       date1.getMonth() === date2.getMonth()
-        && date1.getDate() === date2.getDate()
-        && date1.getYear() === date2.getYear()
+      && date1.getDate() === date2.getDate()
+      && date1.getYear() === date2.getYear()
     )
 
     const addPostToSection = (post) => {
@@ -116,9 +135,24 @@ const BlogPostArchive = ({
     <Layout isHomePage>
       <Seo title="All posts" />
 
-      <ol className={styles.postsList}>
-        {renderPosts(posts)}
-      </ol>
+      <div className={styles.mostRecentPostWrapper}>
+        <h2 className={styles.postsSectionHeading}>Latest</h2>
+        <PostListItem post={mostRecentPost} />
+      </div>
+
+      <div className={styles.featurePostsWrapper}>
+        <h2 className={styles.postsSectionHeading}>Features</h2>
+        <ol className={styles.featurePosts}>
+          {renderPosts(featurePosts)}
+        </ol>
+      </div>
+
+      <div className={styles.postsListWrapper}>
+        <h2 className={styles.postsSectionHeading}>Everything Else</h2>
+        <ol className={styles.postsList}>
+          {renderPosts(posts)}
+        </ol>
+      </div>
 
       <BlogPostArchivePagination
         previousPagePath={previousPagePath}
