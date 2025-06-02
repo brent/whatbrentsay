@@ -6,6 +6,12 @@ const FilterButtons = ({
   filters,
   updateFilters,
 }) => {
+  const buttonLabels = {
+    'feature': 'features',
+    'long': 'articles',
+    'short': 'bits',
+  }
+
   const handleFilterButtonClick = (filterButton) => {
     const result = filters.findIndex(filter => filter === filterButton)
 
@@ -40,7 +46,7 @@ const FilterButtons = ({
         <button
           className={applyFilterButtonStyle(type, filters)}
           onClick={() => handleFilterButtonClick(type)}
-        >{type}</button>
+        >{buttonLabels[type]}</button>
       </li>
     ))
   )

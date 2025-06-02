@@ -61,6 +61,54 @@ const BlogPostArchive = ({
     })
   }
 
+  const getFilteredPostsHeading = (filters) => {
+    const HEADINGS = {
+      EVERYTHING: {
+        label: 'Everything Else',
+        filters: [POST_TYPE.FEATURE, POST_TYPE.LONG, POST_TYPE.SHORT],
+      },
+      FEATURE_LONG: {
+        label: 'Quality Over Quantity',
+        filters: [POST_TYPE.FEATURE, POST_TYPE.LONG],
+      },
+      FEATURE_SHORT: {
+        label: 'The Extremes',
+        filters: [POST_TYPE.FEATURE, POST_TYPE.SHORT],
+      },
+      LONG_SHORT: {
+        label: 'Nothing Fancy',
+        filters: [POST_TYPE.LONG, POST_TYPE.SHORT],
+      },
+      FEATURE_ONLY: {
+        label: 'Handcrafted, Just For You',
+        filters: [POST_TYPE.FEATURE],
+      },
+      LONG_ONLY: {
+        label: 'Articles',
+        filters: [POST_TYPE.LONG],
+      },
+      SHORT_ONLY: {
+        label: 'Unfilterd Thoughts',
+        filters: [POST_TYPE.SHORT],
+      }
+    }
+
+    const arraysMatch = (arr1, arr2) => {
+      if (arr1.length !== arr2.length) return false;
+      const sorted1 = [...arr1].sort();
+      const sorted2 = [...arr2].sort();
+      return sorted1.every((item, index) => item === sorted2[index]);
+    };
+
+    for (const [key, heading] of Object.entries(HEADINGS)) {
+      if (arraysMatch(filters, heading.filters)) {
+        return { key, ...heading };
+      }
+    }
+
+    return { label: 'What did you expect?' };
+  }
+
   return (
     <Layout isHomePage>
       <Seo title="All posts" />
@@ -83,14 +131,20 @@ const BlogPostArchive = ({
       <span className={styles.postSectionDivider}></span>
 
       <div className={styles.postsListWrapper}>
-        <h2 className={styles.postsSectionHeading}>Everything Else</h2>
+        <h2 className={styles.postsSectionHeading}>
+          {getFilteredPostsHeading(filters).label}
+        </h2>
         <FilterButtons
           postTypes={[POST_TYPE.FEATURE, POST_TYPE.LONG, POST_TYPE.SHORT]}
           filters={filters}
           updateFilters={setFilters}
         />
         <ol className={styles.postsList}>
-          {renderPosts(filterPosts(remainingPosts, filters))}
+          {filterPosts(remainingPosts, filters).length > 0 ? (
+            renderPosts(filterPosts(remainingPosts, filters))
+          ) : (
+            <p>...nothing</p>
+          )}
         </ol>
       </div>
     </Layout>
