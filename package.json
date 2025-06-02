@@ -1,32 +1,30 @@
 {
   "name": "whatbrentsay",
+  "version": "1.0.0",
   "private": true,
-  "description": "another blog about stuff",
-  "version": "2.0.0",
-  "author": "brent meyer <brent.meyer@gmail.com>",
-  "dependencies": {
-    "gatsby": "^5.5.0",
-    "gatsby-plugin-google-fonts": "^1.0.1",
-    "gatsby-plugin-image": "^3.0.0",
-    "gatsby-plugin-manifest": "^5.5.0",
-    "gatsby-plugin-sharp": "^5.0.0",
-    "gatsby-source-filesystem": "^5.5.0",
-    "gatsby-source-wordpress": "^7.0.0",
-    "gatsby-transformer-sharp": "^5.5.0",
-    "html-react-parser": "^3.0.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+  "description": "whatbrentsay",
+  "author": "Brent Meyer",
+  "keywords": [
+    "gatsby"
+  ],
   "scripts": {
-    "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "gatsby develop",
+    "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "clean": "gatsby clean"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/brent/whatbrentsay"
+  "dependencies": {
+    "gatsby": "^5.14.1",
+    "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-image": "^3.14.0",
+    "gatsby-plugin-manifest": "^5.14.0",
+    "gatsby-plugin-sharp": "^5.14.0",
+    "gatsby-source-filesystem": "^5.14.0",
+    "gatsby-source-wordpress": "^7.15.0",
+    "gatsby-transformer-sharp": "^5.14.0",
+    "html-react-parser": "^5.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

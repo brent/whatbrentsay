@@ -1,4 +1,7 @@
-.postWrapper { }
+.postWrapper {
+  max-width: 37.5rem;
+  margin: 0 auto;
+}
 
 .postTitle,
 .postTitle__bigTitle,

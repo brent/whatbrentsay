@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image';
 import parse from 'html-react-parser';
 
 import * as styles from './PostListItem.module.css';
 
-import PostTimestamp from '../PostTimestamp';
 import TagList from '../TagList';
 
 import { POST_TYPE, getPostType } from '../../utils/postType';
@@ -21,7 +20,7 @@ const PostListItem = ({ post }) => {
   const postType = getPostType(post);
 
   const PostItem = ((postType) => {
-    switch(postType) {
+    switch (postType) {
       case POST_TYPE.SHORT:
         return (
           <ShortPostItem
@@ -49,6 +48,7 @@ const PostListItem = ({ post }) => {
             date={post.date}
             excerpt={post.excerpt}
             content={post.content}
+            thumb={thumb}
           />
         )
       default:
@@ -72,24 +72,23 @@ const PostListItem = ({ post }) => {
   return (
     <div className={`${styles.postListItem} ${postListItemTypeClass}`}>
       {PostItem}
-      { post.tags.nodes.length > 0
+      {post.tags.nodes.length > 0
         ? <TagList postTagNodes={post.tags.nodes} />
         : null
       }
-      <PostTimestamp date={post.date} />
     </div>
   );
 };
 
-const formatExcerpt = (excerpt, length=240) => {
+const formatExcerpt = (excerpt, length = 240) => {
   const excerptWithoutHEllip = excerpt.replace(' [&hellip;]', '');
   const paragraphText = excerptWithoutHEllip.split('<p>')[1].split('</p>')[0];
   const moreIndicator = '&hellip;';
   const trimmedExcerpt = paragraphText.slice(0, length);
 
   return excerptWithoutHEllip.split('').length > length
-    ? `<p>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
-    : `<p>${trimmedExcerpt}</p>`;
+    ? `<p className=${styles.postExcerpt}>${trimmedExcerpt.slice(0, length)}${moreIndicator}</p>`
+    : `<p className=${styles.postExcerpt}>${trimmedExcerpt}</p>`;
 }
 
 const ShortPostItem = ({
@@ -101,9 +100,9 @@ const ShortPostItem = ({
   const ShortPostWithTitle = ({ uri, title, excerpt }) => (
     <>
       <Link to={uri}>
-        <h2 className={styles.postListItem__title}>
-            <span>{title}</span>
-        </h2>
+        <h3 className={styles.postListItem__title}>
+          <span>{title}</span>
+        </h3>
         {parse(excerpt)}
       </Link>
     </>
@@ -121,7 +120,7 @@ const ShortPostItem = ({
 
   return (
     <>
-      { title === null || title === ''
+      {title === null || title === ''
         ? (
           <ShortPostWithoutTitle
             uri={uri}
@@ -148,16 +147,16 @@ const LongformPostItem = ({
 }) => (
   <>
     <Link to={uri}>
-      <h2 className={`${styles.postListItem__title} ${styles.postListItem__bigTitle}`}>
-          {title}
-      </h2>
-      { thumb !== null
-          ? (
-            <div className={styles.postListItem__thumbWrapper}>
-              <GatsbyImage image={thumb} alt='' />
-            </div>
-          )
-          : null
+      <h3 className={`${styles.postListItem__title} ${styles.postListItem__bigTitle}`}>
+        {title}
+      </h3>
+      {thumb !== null
+        ? (
+          <div className={styles.postListItem__thumbWrapper}>
+            <GatsbyImage image={thumb} alt='' />
+          </div>
+        )
+        : null
       }
       {parse(formatExcerpt(excerpt))}
     </Link>
@@ -170,6 +169,7 @@ const FeaturePostItem = ({
   date,
   excerpt,
   content,
+  thumb,
 }) => {
   const regex = /<p><a href="(?<href>.*)">(?<label>.*)<\/a><\/p>/;
   const { href } = content.match(regex).groups;
@@ -177,10 +177,22 @@ const FeaturePostItem = ({
   return (
     <>
       <Link to={href}>
-        <h2 className={`${styles.postListItem__title} ${styles.postListItem__hugeTitle}`}>
-            {title}
-        </h2>
-        { excerpt ? parse(excerpt) : null }
+        {thumb !== null
+          ? (
+            <div className={styles.postListItem__thumbWrapper}>
+              <GatsbyImage image={thumb} alt='' />
+            </div>
+          )
+          : (
+            <div className={styles.postListItem__thumbWrapper}>
+              <StaticImage src='../../images/wbs-feature-placeholder-cover.png' alt='' />
+            </div>
+          )
+        }
+        <h3 className={`${styles.postListItem__title} ${styles.postListItem__hugeTitle}`}>
+          {title}
+        </h3>
+        {parse(formatExcerpt(excerpt))}
       </Link>
     </>
   )

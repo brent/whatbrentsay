@@ -1,15 +1,119 @@
 .postsList,
+.mostRecentPostWrapper,
 .postsList ol,
-.postsList ul {
+.postsList ul,
+.featurePostsWrapper ol,
+.postsListWrapper ol {
   list-style-type: none;
+}
+
+.postsListWrapper ol li {
+  margin-bottom: var(--space-5);
+}
+
+.featurePosts {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  padding-right: var(--space-3);
+  overflow-y: scroll;
+}
+
+.featurePosts .postListItem {
+  min-width: 80%;
+}
+
+.postsSectionHeading {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  font-size: var(--font-xs);
+  letter-spacing: 15%;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .postSection {
   margin-bottom: var(--space-6);
 }
 
+.featurePosts .postSection {
+  margin-bottom: 0;
+}
+
 .postSectionDivider {
-  color: #ddd;
+  background-color: #EEEEEE;
   display: block;
-  transform: translate(0, calc(var(--space-2) * -1));
+  height: 1px;
+  margin: var(--space-5) 0;
+}
+
+.featurePostsWrapper .postSectionDivider {
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 38.5625rem) {
+  .featurePosts {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    padding-left: var(--space-3);
+  }
+
+  .featurePosts .postListItem {
+    width: 25rem;
+    flex: 1 0 auto;
+    min-width: initial;
+  }
+}
+
+@media (min-width: 60rem) {
+  .mostRecentPostWrapper {
+    grid-area: mostRecent;
+  }
+
+  .featurePostsWrapper {
+    grid-area: featurePosts;
+  }
+
+  .postsListWrapper {
+    grid-area: postsList;
+    min-height: 0;
+  }
+
+  .featurePosts {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--space-5);
+    overflow-y: initial;
+    width: auto;
+    padding: 0;
+  }
+
+  .featurePosts .postListItem {
+    width: 100%;
+  }
+
+  .featurePostsWrapper .postSectionDivider {
+    display: none;
+  }
+
+  .postsWrapper {
+    display: grid;
+    column-gap: var(--space-5);
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "mostRecent featurePosts"
+      "postsList featurePosts";
+    width: 100%;
+    align-content: start;
+    align-items: start;
+  }
+
+  .featurePostsWrapper {
+    border-left: 0.0625rem solid #eee;
+    padding-left: var(--space-5);
+  }
 }
