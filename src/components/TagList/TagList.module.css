@@ -10,3 +10,9 @@
 }
 
 .tag {}
+
+@media (min-width: 64rem) {
+  .tagList {
+    font-size: var(--font-xs);
+  }
+}

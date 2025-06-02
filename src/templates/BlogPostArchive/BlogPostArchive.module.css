@@ -13,14 +13,14 @@
 
 .featurePosts {
   display: flex;
-  flex: row nowrap;
+  flex-flow: row nowrap;
   gap: var(--space-3);
   padding-bottom: var(--space-3);
   padding-right: var(--space-3);
   overflow-y: scroll;
 }
 
-.featurePosts .postListItems {
+.featurePosts .postListItem {
   min-width: 80%;
 }
 
@@ -48,7 +48,7 @@
   margin: var(--space-5) 0;
 }
 
-.postSectionDivider:nth-of-type(2) {
+.featurePostsWrapper .postSectionDivider {
   margin-top: var(--space-3);
 }
 
@@ -61,9 +61,59 @@
     padding-left: var(--space-3);
   }
 
-  .featurePosts .postListItems {
+  .featurePosts .postListItem {
     width: 25rem;
     flex: 1 0 auto;
     min-width: initial;
+  }
+}
+
+@media (min-width: 60rem) {
+  .mostRecentPostWrapper {
+    grid-area: mostRecent;
+  }
+
+  .featurePostsWrapper {
+    grid-area: featurePosts;
+  }
+
+  .postsListWrapper {
+    grid-area: postsList;
+    min-height: 0;
+  }
+
+  .featurePosts {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--space-5);
+    overflow-y: initial;
+    width: auto;
+    padding: 0;
+  }
+
+  .featurePosts .postListItem {
+    width: 100%;
+  }
+
+  .featurePostsWrapper .postSectionDivider {
+    display: none;
+  }
+
+  .postsWrapper {
+    display: grid;
+    column-gap: var(--space-5);
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "mostRecent featurePosts"
+      "postsList featurePosts";
+    width: 100%;
+    align-content: start;
+    align-items: start;
+  }
+
+  .featurePostsWrapper {
+    border-left: 0.0625rem solid #eee;
+    padding-left: var(--space-5);
   }
 }

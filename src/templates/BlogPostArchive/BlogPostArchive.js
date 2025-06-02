@@ -53,7 +53,7 @@ const BlogPostArchive = ({
   const renderPosts = (posts) => {
     return posts.map((post, index, arr) => {
       return (
-        <li className={styles.postListItems} key={index}>
+        <li className={styles.postListItem} key={index}>
           <DateDivider date={post.date} />
           <PostListItem post={post} />
         </li>
@@ -84,7 +84,7 @@ const BlogPostArchive = ({
         filters: [POST_TYPE.FEATURE],
       },
       LONG_ONLY: {
-        label: 'Articles',
+        label: 'Structured Thoughts',
         filters: [POST_TYPE.LONG],
       },
       SHORT_ONLY: {
@@ -113,39 +113,41 @@ const BlogPostArchive = ({
     <Layout isHomePage>
       <Seo title="All posts" />
 
-      <div className={styles.mostRecentPostWrapper}>
-        <h2 className={styles.postsSectionHeading}>Latest</h2>
-        <DateDivider date={mostRecentPost.date} />
-        <PostListItem post={mostRecentPost} />
-      </div>
+      <div className={styles.postsWrapper}>
+        <div className={styles.mostRecentPostWrapper}>
+          <h2 className={styles.postsSectionHeading}>Latest</h2>
+          <DateDivider date={mostRecentPost.date} />
+          <PostListItem post={mostRecentPost} />
 
-      <span className={styles.postSectionDivider}></span>
+          <span className={styles.postSectionDivider}></span>
+        </div>
 
-      <div className={styles.featurePostsWrapper}>
-        <h2 className={styles.postsSectionHeading}>All Features</h2>
-        <ol className={styles.featurePosts}>
-          {renderPosts(featurePosts)}
-        </ol>
-      </div>
+        <div className={styles.featurePostsWrapper}>
+          <h2 className={styles.postsSectionHeading}>All Features</h2>
+          <ol className={styles.featurePosts}>
+            {renderPosts(featurePosts)}
+          </ol>
 
-      <span className={styles.postSectionDivider}></span>
+          <span className={styles.postSectionDivider}></span>
+        </div>
 
-      <div className={styles.postsListWrapper}>
-        <h2 className={styles.postsSectionHeading}>
-          {getFilteredPostsHeading(filters).label}
-        </h2>
-        <FilterButtons
-          postTypes={[POST_TYPE.FEATURE, POST_TYPE.LONG, POST_TYPE.SHORT]}
-          filters={filters}
-          updateFilters={setFilters}
-        />
-        <ol className={styles.postsList}>
-          {filterPosts(remainingPosts, filters).length > 0 ? (
-            renderPosts(filterPosts(remainingPosts, filters))
-          ) : (
-            <p>...nothing</p>
-          )}
-        </ol>
+        <div className={styles.postsListWrapper}>
+          <h2 className={styles.postsSectionHeading}>
+            {getFilteredPostsHeading(filters).label}
+          </h2>
+          <FilterButtons
+            postTypes={[POST_TYPE.FEATURE, POST_TYPE.LONG, POST_TYPE.SHORT]}
+            filters={filters}
+            updateFilters={setFilters}
+          />
+          <ol className={styles.postsList}>
+            {filterPosts(remainingPosts, filters).length > 0 ? (
+              renderPosts(filterPosts(remainingPosts, filters))
+            ) : (
+              <p>...nothing</p>
+            )}
+          </ol>
+        </div>
       </div>
     </Layout>
   )

@@ -27,5 +27,28 @@
 @media (min-width: 37.5rem) {
   .mainWrapper {
     max-width: var(--size-content);
+    padding: 0 var(--space-5);
+  }
+
+  .footerWrapper {
+    max-width: var(--size-content);
+    padding: 0 var(--space-5);
+  }
+}
+
+@media (min-width: 60rem) {
+  .layoutWrapper {
+    display: block;
+  }
+
+  .layoutWrapper,
+  .mainWrapper {
+    max-width: 75rem;
+    box-sizing: border-box;
+  }
+
+  .footerWrapper {
+    max-width: initial;
+    padding: 0 var(--space-5);
   }
 }
