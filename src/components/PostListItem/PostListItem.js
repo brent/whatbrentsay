@@ -5,7 +5,6 @@ import parse from 'html-react-parser';
 
 import * as styles from './PostListItem.module.css';
 
-import PostTimestamp from '../PostTimestamp';
 import TagList from '../TagList';
 
 import { POST_TYPE, getPostType } from '../../utils/postType';

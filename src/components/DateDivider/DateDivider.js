@@ -3,20 +3,6 @@ import * as styles from './DateDivider.module.css';
 
 import PostTimestamp from '../PostTimestamp/'
 
-const isThisYear = (date) => {
-  const now = new Date();
-  const thisYear = now.getFullYear();
-  const dateYear = date.getFullYear();
-
-  if ((thisYear - dateYear) === 0) {
-    return true;
-  }
-
-  if ((thisYear - dateYear) > 0) {
-    return false;
-  }
-}
-
 const DateDivider = ({ date }) => {
   const dateObj = new Date(date);
   const locale = 'en-US';

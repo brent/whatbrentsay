@@ -18,7 +18,7 @@ const FilterButtons = ({
     if (result !== -1) {
       updateFilters([
         ...filters.map(filter => {
-          if (filter != filterButton) return filter
+          return filter !== filterButton ? filter : null
         })
           .filter(val => val != null)
       ])
@@ -34,7 +34,7 @@ const FilterButtons = ({
     let buttonStyles = `${styles.filterButton}`
 
     filters.forEach(filter => {
-      if (filter === type) buttonStyles = `${buttonStyles} ` + `${styles.filterButton__active}`
+      if (filter === type) buttonStyles = `${buttonStyles} ${styles.filterButton__active}`
     });
 
     return buttonStyles
