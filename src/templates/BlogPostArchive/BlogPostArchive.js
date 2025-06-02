@@ -1,11 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../../components/Layout"
 import Seo from "../../components/Seo"
 import DateDivider from "../../components/DateDivider";
 import PostListItem from "../../components/PostListItem";
-import BlogPostArchivePagination from "../../components/BlogPostArchivePagination";
+import FilterButtons from '../../components/FilterButtons'
 
 import { POST_TYPE, getPostType } from '../../utils/postType.js'
 
@@ -15,7 +15,13 @@ const BlogPostArchive = ({
   data,
   pageContext: { nextPagePath, previousPagePath },
 }) => {
-  const posts = data.allWpPost.nodes;
+  const [filters, setFilters] = useState([
+    POST_TYPE.FEATURE,
+    POST_TYPE.LONG,
+    POST_TYPE.SHORT,
+  ])
+
+  const allPosts = data.allWpPost.nodes;
 
   const getFeaturePosts = (posts) => {
     let featurePosts = []
@@ -27,8 +33,22 @@ const BlogPostArchive = ({
     return featurePosts
   }
 
-  const featurePosts = getFeaturePosts(posts)
-  const mostRecentPost = posts.splice(0, 1)[0]
+  const featurePosts = getFeaturePosts(allPosts)
+  const [mostRecentPost, ...remainingPosts] = allPosts
+
+  const filterPosts = (posts, filters) => {
+    let filtered = []
+
+    posts.forEach(post => {
+      filters.forEach(filter => {
+        if (post.categories.nodes[0].name === filter) {
+          filtered.push(post)
+        }
+      })
+    })
+
+    return filtered
+  }
 
   const renderPosts = (posts) => {
     return posts.map((post, index, arr) => {
@@ -39,69 +59,6 @@ const BlogPostArchive = ({
         </li>
       )
     })
-  }
-
-  // TODO: make this function better
-  const groupPostsByDate = (posts) => {
-    const isSameDay = (date1, date2) => (
-      date1.getMonth() === date2.getMonth()
-      && date1.getDate() === date2.getDate()
-      && date1.getYear() === date2.getYear()
-    )
-
-    const addPostToSection = (post) => {
-      postSectionPosts.push(post);
-    }
-
-    const addSectionToList = () => {
-      postList.push({
-        date: postSectionDate,
-        posts: postSectionPosts,
-      });
-    }
-
-    const resetPostSection = () => {
-      postSectionDate = null;
-      postSectionPosts = [];
-    }
-
-    let postList = [];
-    let postSectionDate = null;
-    let postSectionPosts = [];
-
-    posts.forEach((post, index) => {
-      postSectionDate ||= new Date(post.date);
-
-      if (isSameDay(new Date(post.date), postSectionDate)) {
-        addPostToSection(post);
-      }
-
-      if (!isSameDay(new Date(post.date), postSectionDate)) {
-        addSectionToList();
-        resetPostSection();
-        postSectionDate = new Date(post.date);
-        addPostToSection(post);
-        return;
-      }
-    });
-
-    if (postSectionPosts.length > 0) {
-      addSectionToList();
-      resetPostSection();
-    }
-    return postList;
-  }
-
-  if (!posts.length) {
-    return (
-      <Layout isHomePage>
-        <Seo title="All posts" />
-        <p>
-          No blog posts found. Add posts to your WordPress site and they'll
-          appear here!
-        </p>
-      </Layout>
-    )
   }
 
   return (
@@ -127,8 +84,13 @@ const BlogPostArchive = ({
 
       <div className={styles.postsListWrapper}>
         <h2 className={styles.postsSectionHeading}>Everything Else</h2>
+        <FilterButtons
+          postTypes={[POST_TYPE.FEATURE, POST_TYPE.LONG, POST_TYPE.SHORT]}
+          filters={filters}
+          updateFilters={setFilters}
+        />
         <ol className={styles.postsList}>
-          {renderPosts(posts)}
+          {renderPosts(filterPosts(remainingPosts, filters))}
         </ol>
       </div>
     </Layout>
