@@ -50,5 +50,6 @@
   .footerWrapper {
     max-width: initial;
     padding: 0 var(--space-5);
+    text-align: center;
   }
 }
