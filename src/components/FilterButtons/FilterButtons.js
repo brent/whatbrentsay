@@ -3,6 +3,7 @@ import * as styles from './FilterButtons.module.css'
 
 const FilterButtons = ({
   postTypes,
+  postTypeTotals,
   filters,
   updateFilters,
 }) => {
@@ -46,7 +47,7 @@ const FilterButtons = ({
         <button
           className={applyFilterButtonStyle(type, filters)}
           onClick={() => handleFilterButtonClick(type)}
-        >{buttonLabels[type]}</button>
+        >{buttonLabels[type]} <span className={styles.filterButton__filterTotal}>{postTypeTotals[type]}</span></button>
       </li>
     ))
   )

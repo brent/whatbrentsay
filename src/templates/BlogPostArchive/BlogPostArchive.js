@@ -88,6 +88,22 @@ const BlogPostArchive = ({
 
   const allPosts = data.allWpPost.nodes;
 
+  const postTypeTotals = ((posts) => {
+    let totals = {
+      [POST_TYPE.FEATURE]: 0,
+      [POST_TYPE.LONG]: 0,
+      [POST_TYPE.SHORT]: 0,
+    }
+
+    posts.forEach(post => {
+      if (POST_TYPE.FEATURE === getPostType(post)) totals[POST_TYPE.FEATURE]++
+      if (POST_TYPE.LONG === getPostType(post)) totals[POST_TYPE.LONG]++
+      if (POST_TYPE.SHORT === getPostType(post)) totals[POST_TYPE.SHORT]++
+    })
+
+    return totals
+  })(allPosts)
+
   const getFeaturePosts = (posts) => {
     let featurePosts = []
 
@@ -201,7 +217,12 @@ const BlogPostArchive = ({
             {getFilteredPostsHeading(filters).label}
           </h2>
           <FilterButtons
-            postTypes={[POST_TYPE.FEATURE, POST_TYPE.LONG, POST_TYPE.SHORT]}
+            postTypes={[
+              POST_TYPE.FEATURE,
+              POST_TYPE.LONG,
+              POST_TYPE.SHORT
+            ]}
+            postTypeTotals={postTypeTotals}
             filters={filters}
             updateFilters={setFilters}
           />
