@@ -16,6 +16,7 @@
   --font-md: 1.125rem;
   --font-sm: 1rem;
   --font-xs: 0.875rem;
+  --font-xxs: 0.75rem;
   --font-paragraph: var(--font-md);
   --line-height-loose: 1.75;
   --line-height-normal: 1.5;
