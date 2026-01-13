@@ -152,3 +152,28 @@
   padding-bottom: 0;
   border-bottom: none;
 }
+
+/* Report Card styles */
+.postContent :global(.wp-block-group--quoteCompare) {
+  border: 1px solid #eee;
+  border-radius: var(--space-2);
+  box-shadow: 0 var(--space-2) var(--space-3) rgba(0,0,0,0.05);
+  padding: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.postContent :global(.wp-block-group--quoteCompare) blockquote {
+  border-left: none;
+  border-bottom: 1px solid #eee;
+  color: var(--color-text-dark);
+  margin: 0 0 var(--space-2) 0;
+  padding: 0 0 var(--space-2) 0;
+}
+
+.postContent :global(.wp-block-group--quoteCompare) blockquote p {
+}
+
+.postContent :global(.wp-block-group--quoteCompare) blockquote + p {
+  padding: 0;
+  margin: 0;
+}
