@@ -10,7 +10,10 @@ module.exports = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": process.env.WPGRAPHQL_URL || "http://localhost:8888/graphql"
+      "url": process.env.WPGRAPHQL_URL || "http://localhost:8888/graphql",
+      html: {
+        useGatsbyImage: true,
+      }
     }
   },
     "gatsby-plugin-image",

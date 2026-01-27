@@ -56,6 +56,11 @@
   margin-bottom: var(--space-5);
 }
 
+/* Force aspect ratio preservation for images with explicit dimensions */
+.postContent img {
+  height: auto !important;
+}
+
 .postContent blockquote > p,
 .postContent blockquote > cite {
   margin-bottom: 0;
@@ -151,6 +156,11 @@
 .postContent tr:last-child td {
   padding-bottom: 0;
   border-bottom: none;
+}
+
+/* img block group */
+.postContent :global(.img-group-hug) figure {
+  margin-bottom: 0;
 }
 
 /* Report Card styles */
