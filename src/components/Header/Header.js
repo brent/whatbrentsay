@@ -15,6 +15,8 @@ const Header = ({ siteTitle }) => (
           layout='fixed'
           width={48}
           height={48}
+          outputPixelDensities={[1, 2, 3]}
+          quality={95}
           className={styles.logoImg}
         />
       </Link>
